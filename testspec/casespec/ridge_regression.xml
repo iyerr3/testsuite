@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>ridge_regression</algorithm>
+    <methods>
+      <method>
+        <name>ridge_newton_train</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>rr_null_input_negative</name>
+      <comments>
+        To test the case where we have null inputs for tables
+      </comments>
+      <execute_rate>1</execute_rate>
+      <method>
+        <name>ridge_newton_train</name>
+
+        <!-- parameters -->
+        <list_parameter>
+          <name>tbl_source</name>
+          <value>cvtest</value>
+          <value>NULL</value>
+        </list_parameter>
+
+        <list_parameter>
+          <name>col_ind_var</name>
+          <value>val</value>
+          <value>NULL</value>
+        </list_parameter>
+
+        <list_parameter>
+          <name>col_dep_var</name>
+          <value>dep</value>
+          <value>NULL</value>
+        </list_parameter>
+
+        <list_parameter>
+          <name>tbl_result</name>
+          <value>en_result</value>
+          <value>NULL</value>
+        </list_parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.1</value>
+          <value>NULL</value>
+        </parameter>
+
+        <parameter>
+          <name>normalization</name>
+          <value>NULL</value>
+        </parameter>
+        <tear_down>DROP TABLE IF EXISTS en_result; </tear_down>
+      </method>
+    </test_suite>
+    <test_suite>
+          <name>rr_lambda_bva</name>
+          <comments>test lambda boundary values</comments>
+          <!-- It indicate max execution times-->
+          <execute_rate>1</execute_rate>
+          <method>
+              <name>ridge_newton_train</name>
+              <list_parameter>
+                  <name>lambda_value</name>
+                  <value>0.0</value>
+                  <value>1.0</value>
+                  <value>10.0</value>
+                  <value>720000.0</value>
+              </list_parameter>
+
+               <parameters>
+                  <parameter>
+                      <name>tbl_source</name>
+                      <value>cvtest</value>
+                  </parameter>
+                  <parameter>
+                      <name>col_ind_var</name>
+                      <value>val</value>
+                  </parameter>
+                  <parameter>
+                      <name>col_dep_var</name>
+                      <value>dep</value>
+                  </parameter>
+                  <parameter>
+                      <name>tbl_result</name>
+                      <value>en_result</value>
+                  </parameter>
+                  <list_parameter>
+                      <name>normalization</name>
+                      <value>true</value>
+                      <value>false</value>
+                  </list_parameter>
+              </parameters>
+              <tear_down>
+                DROP TABLE IF EXISTS en_result;
+              </tear_down>
+          </method>
+      </test_suite>
+      <test_suite>
+          <name>rr_lambda_bva_negative</name>
+          <comments>test lambda boundary values</comments>
+          <!-- It indicate max execution times-->
+          <execute_rate>1</execute_rate>
+          <method>
+              <name>ridge_newton_train</name>
+              <list_parameter>
+                  <name>lambda_value</name>
+                  <value>-10.0</value>
+                  <value>-0.1</value>
+              </list_parameter>
+
+               <parameters>
+                  <parameter>
+                      <name>tbl_source</name>
+                      <value>cvtest</value>
+                  </parameter>
+                  <parameter>
+                      <name>col_ind_var</name>
+                      <value>val</value>
+                  </parameter>
+                  <parameter>
+                      <name>col_dep_var</name>
+                      <value>dep</value>
+                  </parameter>
+                  <parameter>
+                      <name>tbl_result</name>
+                      <value>en_result</value>
+                  </parameter>
+                  <list_parameter>
+                      <name>normalization</name>
+                      <value>true</value>
+                      <value>false</value>
+                  </list_parameter>
+              </parameters>
+              <tear_down>
+                DROP TABLE IF EXISTS en_result;
+              </tear_down>
+          </method>
+      </test_suite>
+
+      <test_suite>
+        <name>rr_null_normalize_negative</name>
+        <comments>
+          To test the case where we have null normalized values
+        </comments>
+        <execute_rate>1</execute_rate>
+        <method>
+          <name>ridge_newton_train</name>
+
+          <!-- parameters -->
+          <parameter>
+            <name>tbl_source</name>
+            <value>cvtest</value>
+          </parameter>
+
+          <parameter>
+            <name>col_ind_var</name>
+            <value>val</value>
+          </parameter>
+
+          <list_parameter>
+            <name>col_dep_var</name>
+            <value>dep</value>
+          </list_parameter>
+
+          <parameter>
+            <name>tbl_result</name>
+            <value>en_result</value>
+          </parameter>
+
+          <parameter>
+            <name>lambda_value</name>
+            <value>0.1</value>
+          </parameter>
+
+          <list_parameter>
+            <name>normalization</name>
+            <value>NULL</value>
+            <value>other_value</value>
+          </list_parameter>
+
+          <tear_down>DROP TABLE IF EXISTS en_result; </tear_down>
+        </method>
+      </test_suite>
+  </multi_test_suites>
+</test_suites>

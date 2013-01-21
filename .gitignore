@@ -1,4 +1,5 @@
+dataset/sql/*.sql.gz
 testspec/metadata/analyticstool.xml
 testspec/metadata/testconfig.xml
-report/*
+report/*.report
 testcase/*
