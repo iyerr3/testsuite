@@ -15,7 +15,7 @@
     </methods>
 
     <test_suite>
-      <name>rr_null_input_negative</name>
+      <name>rr_input_null_table_negative</name>
       <comments>
         To test the case where we have null inputs for tables
       </comments>
@@ -62,7 +62,7 @@
       </method>
     </test_suite>
     <test_suite>
-          <name>rr_lambda_bva</name>
+          <name>rr_input_lambda_bva</name>
           <comments>test lambda boundary values</comments>
           <!-- It indicate max execution times-->
           <execute_rate>1</execute_rate>
@@ -105,7 +105,7 @@
           </method>
       </test_suite>
       <test_suite>
-          <name>rr_lambda_bva_negative</name>
+          <name>rr_input_lambda_bva_negative</name>
           <comments>test lambda boundary values</comments>
           <!-- It indicate max execution times-->
           <execute_rate>1</execute_rate>
@@ -147,7 +147,7 @@
       </test_suite>
 
       <test_suite>
-        <name>rr_null_normalize_negative</name>
+        <name>rr_input_null_normalize_negative</name>
         <comments>
           To test the case where we have null normalized values
         </comments>

@@ -11,7 +11,7 @@ CREATE TABLE testsuites(
        casenum         int,
        comments        text,
        sameparameters  text);
- 
+
 CREATE TABLE testitems(
        itemname        text,
        suitename       text,
@@ -25,10 +25,10 @@ CREATE TABLE testitems(
        rownum          int);
 
 CREATE TABLE testitemresult(
-       itemname               text, 
+       itemname               text,
        runid                 int,
        iteration             int,
-       resultkind            text, 
+       resultkind            text,
        resultlocation        text,
        elapsedtime           bigint,
        issuccessful          bool,
@@ -68,13 +68,13 @@ CREATE TABLE evaluation_kmeans(
       gof float);
 
 CREATE TABLE evaluation_linear_regression (
-	source text, 
-	datasets text, 
+	source text,
+	datasets text,
 	coef double precision[]);
 
 CREATE TABLE evaluation_logistic_regression (
-	source text, 
-	datasets text, 
+	source text,
+	datasets text,
 	coef double precision[]);
 
 
@@ -82,20 +82,20 @@ CREATE TABLE evaluation_logistic_regression (
 
 
 ----kmeans:
-INSERT INTO evaluation_kmeans 
-(test_table,test_size,source,k_value,gof) 
+INSERT INTO evaluation_kmeans
+(test_table,test_size,source,k_value,gof)
 values ('madlibtestdata.km_abalone',4177,'R',6,0.4547123);
-INSERT INTO evaluation_kmeans 
-(test_table,test_size,source,k_value,gof) 
+INSERT INTO evaluation_kmeans
+(test_table,test_size,source,k_value,gof)
 values ('madlibtestdata.km_movement_libras',360,'R',6,0.1951174);
-INSERT INTO evaluation_kmeans 
-(test_table,test_size,source,k_value,gof) 
+INSERT INTO evaluation_kmeans
+(test_table,test_size,source,k_value,gof)
 values ('madlibtestdata.km_water_treatment',527,'R',6,0.442349);
-INSERT INTO evaluation_kmeans 
-(test_table,test_size,source,k_value,gof) 
+INSERT INTO evaluation_kmeans
+(test_table,test_size,source,k_value,gof)
 values ('madlibtestdata.km_wine',177,'R',6,0.5405609);
-INSERT INTO evaluation_kmeans 
-(test_table,test_size,source,k_value,gof) 
+INSERT INTO evaluation_kmeans
+(test_table,test_size,source,k_value,gof)
 values ('madlibtestdata.km_winequality_red',1599,'R',6,0.3916135);
 
 ----linear regression:

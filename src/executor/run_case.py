@@ -11,7 +11,8 @@ Path = file_path.Path()
 
 def __getList(filename):
     """Parse file and return a list of non-empty lines."""
-    return [ l.strip() for l in open(filename).readlines() if l.strip() != '' and l.strip()[0] != '#']
+    return [ l.strip() for l in open(filename).readlines() \
+                        if l.strip() != '' and l.strip()[0] != '#']
 
 def __getCasesFromSingle(filename):
     """read cases from casesfile and return them."""
@@ -53,7 +54,7 @@ def __distinctingCases(cases):
 
 def __skipCases(cases, skipfilename, testConfiger):
     """Skip cases and return remainning cases.
-    
+
     @param cases: cases to be skipped.
     @param skipfilename:skip file name.
     """
@@ -104,15 +105,16 @@ def __parserCasesFromFile(getfile, skipfile, isList, isUnique, testConfiger):
 
 def runCases(getfile, skipfile, isList, isUnique, platform, analyticsTool, testConfiger, run_id):
     """run the cases specialized by getfile. """
-    (cases, skippedcases) = __parserCasesFromFile(getfile, skipfile, isList, isUnique, testConfiger)
+    (cases, skippedcases) = __parserCasesFromFile(getfile,
+                                skipfile, isList, isUnique, testConfiger)
 
     if not platform in analyticsTool.analyticsTools:
         sys.exit('ERROR: Wrong platform name.')
-    testdbconf = analyticsTool.analyticsTools[platform] 
+    testdbconf = analyticsTool.analyticsTools[platform]
     executor = execute_case.TestCaseExecutor(cases, testdbconf, platform)
 
     executor.executeCase(Path.TestCaseDir, run_id)
-    
+
     if skipfile:
         for case in skippedcases:
                 f = open( Path.TestCaseDir +case+'.case')

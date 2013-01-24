@@ -1,0 +1,46 @@
+# TestSuite Name : rr_input_null_table_negative
+# To test the case where we have null inputs for tables
+# Start TestSuite ==========
+rr_input_null_table_negative_0_0
+rr_input_null_table_negative_0_1
+rr_input_null_table_negative_0_2
+rr_input_null_table_negative_0_3
+rr_input_null_table_negative_0_4
+rr_input_null_table_negative_0_5
+rr_input_null_table_negative_0_6
+rr_input_null_table_negative_0_7
+rr_input_null_table_negative_0_8
+rr_input_null_table_negative_0_9
+rr_input_null_table_negative_0_10
+rr_input_null_table_negative_0_11
+rr_input_null_table_negative_0_12
+rr_input_null_table_negative_0_13
+rr_input_null_table_negative_0_14
+rr_input_null_table_negative_0_15
+
+# TestSuite Name : rr_input_lambda_bva
+# test lambda boundary values
+# Start TestSuite ==========
+rr_input_lambda_bva_0_0
+rr_input_lambda_bva_0_1
+rr_input_lambda_bva_0_2
+rr_input_lambda_bva_0_3
+rr_input_lambda_bva_0_4
+rr_input_lambda_bva_0_5
+rr_input_lambda_bva_0_6
+rr_input_lambda_bva_0_7
+
+# TestSuite Name : rr_input_lambda_bva_negative
+# test lambda boundary values
+# Start TestSuite ==========
+rr_input_lambda_bva_negative_0_0
+rr_input_lambda_bva_negative_0_1
+rr_input_lambda_bva_negative_0_2
+rr_input_lambda_bva_negative_0_3
+
+# TestSuite Name : rr_input_null_normalize_negative
+# To test the case where we have null normalized values
+# Start TestSuite ==========
+rr_input_null_normalize_negative_0_0
+rr_input_null_normalize_negative_0_1
+
