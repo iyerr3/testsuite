@@ -21,23 +21,23 @@
             <execute_rate>1</execute_rate>
             <method>
                 <name>cross_validation_general</name>
-                <list_parameter>
+                <parameter>
                     <name>modelling_func</name>
-                    <value>NULL</value>
+                    <!-- <value>NULL</value> -->
                     <value>madlib.cv_linregr_train</value>
-                </list_parameter>
-                <list_parameter>
+                </parameter>
+                <parameter>
                     <name>modelling_params</name>
-                    <value>NULL</value>
-                    <value>{NULL}</value>
-                    <value>'{%data%, 'x', 'y', %model%}'</value>
-                </list_parameter>
-                <list_parameter>
+                    <!-- <value>NULL</value> -->
+                    <value>'{NULL}'</value>
+                    <!-- <value>{%data%, x, y, %model%}</value> -->
+                </parameter>
+                <parameter>
                     <name>modelling_params_type</name>
-                    <value>NULL</value>
+                    <!-- <value>NULL</value> -->
                     <value>'{varchar, varchar, varchar, varchar}'</value>
-                    <value>'{varchar, varchar, integer, varchar}'</value>
-                </list_parameter>
+                    <!-- <value>{varchar, varchar, integer, varchar}</value> -->
+                </parameter>
                 <parameter>
                     <name>param_explored</name>
                     <value>NULL</value>
@@ -48,7 +48,7 @@
                 </parameter>
                 <parameter>
                     <name>predict_func</name>
-                    <value>'madlib.cv_linregr_predict'</value>
+                    <value>madlib.cv_linregr_predict</value>
                 </parameter>
                 <parameter>
                     <name>predict_params</name>
@@ -61,7 +61,7 @@
                 </parameter>
                 <parameter>
                     <name>metric_func</name>
-                   <value>'madlib.mse_error'</value>
+                    <value>madlib.mse_error</value>
                 </parameter>
                 <parameter>
                     <name>metric_params</name>
@@ -74,7 +74,7 @@
                 </parameter>
                 <parameter>
                     <name>data_tbl</name>
-                    <value>'madlibtestdata.lin_slump_oi'</value>
+                    <value>madlibtestdata.lin_slump_oi</value>
                 </parameter>
                 <parameter>
                     <name>data_id</name>
@@ -86,7 +86,7 @@
                 </parameter>
                 <parameter>
                     <name>validation_result</name>
-                    <value>'linregr_result'</value>
+                    <value>linregr_result</value>
                 </parameter>
                 <parameter>
                     <name>data_cols</name>
@@ -98,12 +98,11 @@
                 </parameter>
             </method>
         </test_suite>
-        <test_suite>
+<!--         <test_suite>
             <name>cv_null_predict_linregr</name>
             <comments>
                 Testing invalid values of input for cross validation function
             </comments>
-            <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
                 <name>cross_validation_general</name>
@@ -113,11 +112,11 @@
                 </parameter>
                 <parameter>
                     <name>modelling_params</name>
-                    <value>'{%data%, x, y, %model%, 100, igd, 1e-7}'</value>
+                    <value>{%data%, x, y, %model%, 100, igd, 1e-7}</value>
                 </parameter>
                 <parameter>
                     <name>modelling_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar}'</value>
+                    <value>{varchar, varchar, varchar, varchar}</value>
                 </parameter>
                 <parameter>
                     <name>param_explored</name>
@@ -130,38 +129,38 @@
                 <list_parameter>
                     <name>predict_func</name>
                     <value>NULL</value>
-                    <value>'madlib.cv_linregr_predict'</value>
+                    <value>madlib.cv_linregr_predict</value>
                 </list_parameter>
                 <list_parameter>
                     <name>predict_params</name>
                     <value>NULL</value>
                     <value>{NULL}</value>
-                    <value>'{%model%, %data%, x, %id%, %prediction%}'</value>
+                    <value>{%model%, %data%, x, %id%, %prediction%}</value>
                 </list_parameter>
                 <list_parameter>
                     <name>predict_params_type</name>
                     <value>NULL</value>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                         </value>
-                    <value>'{varchar, integer, varchar, varchar, varchar}'
+                    <value>{varchar, integer, varchar, varchar, varchar}
                         </value>
                 </list_parameter>
                 <parameter>
                     <name>metric_func</name>
-                   <value>'madlib.cv_linregr_accuracy'</value>
+                   <value>madlib.cv_linregr_accuracy</value>
                 </parameter>
                 <parameter>
                     <name>metric_params</name>
-                     <value>'{%prediction%, %data%, %id%, y, %error%}'</value>
+                     <value>{%prediction%, %data%, %id%, y, %error%}</value>
                 </parameter>
                 <parameter>
                     <name>metric_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                     </value>
                 </parameter>
                 <parameter>
                     <name>data_tbl</name>
-                    <value>'madlibtestdata.log_breast_cancer_wisconsin'</value>
+                    <value>madlibtestdata.log_breast_cancer_wisconsin</value>
                 </parameter>
                 <parameter>
                     <name>data_id</name>
@@ -173,12 +172,13 @@
                 </parameter>
                 <parameter>
                     <name>validation_result</name>
-                    <value>'logregr_result'</value>
+                    <value>logregr_result</value>
                 </parameter>
                 <parameter>
                     <name>data_cols</name>
-                    <value>'{x, y}'</value>
+                    <value>{x, y}</value>
                 </parameter>
+                <parameter>
                     <name>fold_num</name>
                     <value>10</value>
                 </parameter>
@@ -189,7 +189,6 @@
             <comments>
                 Testing invalid values of input for cross validation function
             </comments>
-            <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
                 <name>cross_validation_general</name>
@@ -199,11 +198,11 @@
                 </parameter>
                 <parameter>
                     <name>modelling_params</name>
-                    <value>'{%data%, x, y, %model%, 100, igd, 1e-7}'</value>
+                    <value>{%data%, x, y, %model%, 100, igd, 1e-7}</value>
                 </parameter>
                 <parameter>
                     <name>modelling_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar}'</value>
+                    <value>{varchar, varchar, varchar, varchar}</value>
                 </parameter>
                 <parameter>
                     <name>param_explored</name>
@@ -215,38 +214,38 @@
                 </parameter>
                 <parameter>
                     <name>predict_func</name>
-                    <value>'madlib.cv_linregr_predict'</value>
+                    <value>madlib.cv_linregr_predict</value>
                 </parameter>
                 <parameter>
                     <name>predict_params</name>
-                    <value>'{%model%, %data%, x, %id%, %prediction%}'</value>
+                    <value>{%model%, %data%, x, %id%, %prediction%}</value>
                 </parameter>
                 <parameter>
                     <name>predict_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                         </value>
                 </parameter>
                 <list_parameter>
                     <name>metric_func</name>
                     <value>NULL</value>
-                   <value>'madlib.cv_linregr_accuracy'</value>
+                   <value>madlib.cv_linregr_accuracy</value>
                 </list_parameter>
                 <list_parameter>
                     <name>metric_params</name>
                     <value>NULL</value>
                      <value>{NULL}</value>
-                     <value>'{%prediction%, %data%, %id%, y, %error%}'</value>
+                     <value>{%prediction%, %data%, %id%, y, %error%}</value>
                 </list_parameter>
                 <list_parameter>
                     <name>metric_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                     </value>
                     <value>NULL</value>
                     <value>{NULL}</value>
                 </list_parameter>
                 <parameter>
                     <name>data_tbl</name>
-                    <value>'madlibtestdata.log_breast_cancer_wisconsin'</value>
+                    <value>madlibtestdata.log_breast_cancer_wisconsin</value>
                 </parameter>
                 <parameter>
                     <name>data_id</name>
@@ -258,12 +257,13 @@
                 </parameter>
                 <parameter>
                     <name>validation_result</name>
-                    <value>'logregr_result'</value>
+                    <value>logregr_result</value>
                 </parameter>
                 <parameter>
                     <name>data_cols</name>
-                    <value>'{x, y}'</value>
+                    <value>{x, y}</value>
                 </parameter>
+                <parameter>
                     <name>fold_num</name>
                     <value>10</value>
                 </parameter>
@@ -274,7 +274,6 @@
             <comments>
                 Testing invalid values of input for cross validation function
             </comments>
-            <!-- It indicate max execution times-->
             <execute_rate>1</execute_rate>
             <method>
                 <name>cross_validation_general</name>
@@ -284,11 +283,11 @@
                 </parameter>
                 <parameter>
                     <name>modelling_params</name>
-                    <value>'{%data%, x, y, %model%, 100, igd, 1e-7}'</value>
+                    <value>{%data%, x, y, %model%, 100, igd, 1e-7}</value>
                 </parameter>
                 <parameter>
                     <name>modelling_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar}'</value>
+                    <value>{varchar, varchar, varchar, varchar}</value>
                 </parameter>
                 <parameter>
                     <name>param_explored</name>
@@ -300,34 +299,34 @@
                 </parameter>
                 <parameter>
                     <name>predict_func</name>
-                    <value>'madlib.cv_linregr_predict'</value>
+                    <value>madlib.cv_linregr_predict</value>
                 </parameter>
                 <parameter>
                     <name>predict_params</name>
-                    <value>'{%model%, %data%, x, %id%, %prediction%}'</value>
+                    <value>{%model%, %data%, x, %id%, %prediction%}</value>
                 </parameter>
                 <parameter>
                     <name>predict_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                         </value>
                 </parameter>
                 <parameter>
                     <name>metric_func</name>
-                   <value>'madlib.cv_linregr_accuracy'</value>
+                   <value>madlib.cv_linregr_accuracy</value>
                 </parameter>
                 <parameter>
                     <name>metric_params</name>
-                     <value>'{%prediction%, %data%, %id%, y, %error%}'</value>
+                     <value>{%prediction%, %data%, %id%, y, %error%}</value>
                 </parameter>
                 <parameter>
                     <name>metric_params_type</name>
-                    <value>'{varchar, varchar, varchar, varchar, varchar}'
+                    <value>{varchar, varchar, varchar, varchar, varchar}
                     </value>
                 </parameter>
                 <list_parameter>
                     <name>data_tbl</name>
                     <value>NULL</value>
-                    <value>'madlibtestdata.log_breast_cancer_wisconsin'</value>
+                    <value>madlibtestdata.log_breast_cancer_wisconsin</value>
                 </list_parameter>
                 <list_parameter>
                     <name>data_id</name>
@@ -342,14 +341,15 @@
                 </list_parameter>
                 <list_parameter>
                     <name>validation_result</name>
-                    <value>'logregr_result'</value>
+                    <value>logregr_result</value>
                     <value>NULL</value>
                 </list_parameter>
                 <list_parameter>
                     <name>data_cols</name>
                     <value>NULL</value>
-                    <value>'{x, y}'</value>
+                    <value>{x, y}</value>
                 </list_parameter>
+                <list_parameter>
                     <name>fold_num</name>
                     <value>NULL</value>
                     <value>-1</value>
@@ -358,6 +358,6 @@
                     <value>10</value>
                 </list_parameter>
             </method>
-            </test_suite>
+            </test_suite> -->
     </multi_test_suites>
 </test_suites>
