@@ -1,3 +1,15 @@
+case_generalcv_linregr
+case_generalcv_logregr
+case_generic_cv_input
+
+case_linear
+case_logistic_regression
+case_logregr_output
+
+case_linear
+case_linregr_hetero
+case_linregr_grouping
+
 case_kmeans_rewrite_dev_gp
 
 case_common
@@ -109,18 +121,6 @@ case_uniform_quantile
 case_weibull_cdf
 case_weibull_pdf
 case_weibull_quantile
-
-case_linear
-case_logistic_regression
-case_logregr_output
-
-case_generalcv_linregr
-case_generalcv_logregr
-case_generic_cv_input
-
-case_linear
-case_linregr_hetero
-case_linregr_grouping
 
 # case_ridge_regression
 # case_elastic_null_values
