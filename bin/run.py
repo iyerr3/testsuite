@@ -92,7 +92,7 @@ def main():
 
     if options.initbenchmark:
         print "------------ Initializing database ------------"
-        run_sql.runSQL(Path.BootstrapDir + 'init.sql', 
+        run_sql.runSQL(Path.BootstrapDir + 'init.sql',
                         psqlArgs = psql_args, isFile = True)
         run_sql.runSQL(Path.BootstrapDir + 'init_cases.sql',
                         psqlArgs = psql_args, isFile = True)
@@ -104,6 +104,7 @@ def main():
         for sqlfile in glob.glob('../testcase/*.sql'):
             run_sql.runSQL(sqlfile, psqlArgs = psql_args,
                         onErrorStop = False, isFile = True)
+
     if options.gencase:
         print "------------ Generating new test cases ------------"
         if options.debug:
@@ -112,6 +113,8 @@ def main():
             os.system('cd ../src/generator/ && python ./gen_testcase.py')
         run_sql.runSQL(Path.BootstrapDir + 'analyticstool.sql',
                         psqlArgs = psql_args, isFile = True)
+
+    if options.smartload:
         loading_manager = loadingManager(Path.RootPath, 'madlibtestdata', analyticsTools)
         loading_manager.do(options.module, False, False, False)
 
