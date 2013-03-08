@@ -2,7 +2,6 @@
 # Testing invalid values of input for cross validation function
 # Start TestSuite ==========
 cv_null_model_linregr_0_0
-cv_null_model_linregr_0_1
 
 # TestSuite Name : cv_null_predict_linregr
 # Testing invalid values of input for cross validation function
