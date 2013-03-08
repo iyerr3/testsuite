@@ -2,7 +2,6 @@ case_generalcv_linregr
 case_generalcv_logregr
 case_generic_cv_input
 
-case_linear
 case_logistic_regression
 case_logregr_output
 
