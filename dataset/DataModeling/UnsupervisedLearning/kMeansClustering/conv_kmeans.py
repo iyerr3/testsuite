@@ -5,10 +5,8 @@ data_dir = './'
 
 def main():
     from optparse import OptionParser
-    import glob
-    use = '''usage: ./conv_linregr.py --dataset name   --output  outfile
-            --skip_missing_value  
-            --add_constant_col
+    use = '''usage: ./conv_kmeans.py --dataset name   --output  outfile
+            --skip_missing_value  --add_constant_col
     '''
     parser = OptionParser(usage=use)
     parser.add_option("-t", "--table", action="store", dest="table", type="string")
@@ -29,12 +27,10 @@ def main():
     import re
     col_desc = [ [ l for l in re.split('\W+', line.strip().lower()) if l != '' ] for line in desc_file.readlines()]
     num_col_list = []
-    classes = {}
     for i  in range(len(col_desc)):
         if col_desc[i][1] in ('int', 'float8'):
             num_col_list.append(i)
     
-    num_col_desc = [ l for l in col_desc if l[1] in ('int', 'float8')]
     rows = 0
     out_file.write("SET client_min_messages TO WARNING;DROP TABLE IF EXISTS %s;\n" % options.table)
     out_file.write("CREATE TABLE %s (pid bigint, position float8[]);\n" % (options.table))
