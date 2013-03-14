@@ -1,0 +1,14 @@
+# TestSuite Name : lda_compare_perplexity
+# Compare the result with R result
+# Start TestSuite ==========
+lda_compare_perplexity_0_0
+lda_compare_perplexity_0_1
+lda_compare_perplexity_0_2
+lda_compare_perplexity_0_3
+lda_compare_perplexity_0_4
+lda_compare_perplexity_0_5
+lda_compare_perplexity_0_6
+lda_compare_perplexity_0_7
+lda_compare_perplexity_0_8
+lda_compare_perplexity_0_9
+

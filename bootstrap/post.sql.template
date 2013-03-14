@@ -288,3 +288,11 @@ where itemname in (
     select testitemname from logistic_regression_eval_logregr_train
 );
 
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from lda_compare_perplexity as gr
+    where gr.runid = ts.runid and gr.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from lda_compare_perplexity
+);

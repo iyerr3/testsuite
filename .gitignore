@@ -1,6 +1,7 @@
 testspec/metadata/analyticstool.xml
 testspec/metadata/testconfig.xml
 testcase/*
+
 dataset/sql/*
 dataset/download/*
 *.pyc
@@ -8,4 +9,8 @@ bootstrap/*.sql
 report/*report*
 R/data
 .Rhistory
-
+/bootstrap/*.sql
+/report*
+/testcase*
+*.pyc
+*.gz

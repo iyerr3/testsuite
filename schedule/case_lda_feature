@@ -1,0 +1,10 @@
+# TestSuite Name : lda_basic_function_nips
+# Test the functionality of lda over the nips dataset.
+# Start TestSuite ==========
+lda_basic_function_nips_0_0
+
+# TestSuite Name : lda_basic_function_nytimes
+# Test the functionality of lda over the nytimes dataset.
+# Start TestSuite ==========
+lda_basic_function_nytimes_0_0
+

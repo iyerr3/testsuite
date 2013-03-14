@@ -1,0 +1,81 @@
+# TestSuite Name : lda_datatable_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_datatable_checking_0_0
+lda_datatable_checking_0_1
+lda_datatable_checking_0_2
+lda_datatable_checking_0_3
+lda_datatable_checking_0_4
+lda_datatable_checking_0_5
+lda_datatable_checking_0_6
+
+# TestSuite Name : lda_modeltable_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_modeltable_checking_0_0
+lda_modeltable_checking_0_1
+
+# TestSuite Name : lda_outdatatable_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_outdatatable_checking_0_0
+lda_outdatatable_checking_0_1
+
+# TestSuite Name : lda_vocsize_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_vocsize_checking_0_0
+lda_vocsize_checking_0_1
+
+# TestSuite Name : lda_topicnum_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_topicnum_checking_0_0
+lda_topicnum_checking_0_1
+
+# TestSuite Name : lda_iternum_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_iternum_checking_0_0
+lda_iternum_checking_0_1
+
+# TestSuite Name : lda_alpha_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_alpha_checking_0_0
+lda_alpha_checking_0_1
+
+# TestSuite Name : lda_beta_checking
+# Test the parameter checking of lda_train over a toy dataset.
+# Start TestSuite ==========
+lda_beta_checking_0_0
+lda_beta_checking_0_1
+
+# TestSuite Name : lda_toy_gen_model_for_pred_parameter_checking
+# Generate a valid model with the toy dataset for the parameter checking of lda_predict.
+# Start TestSuite ==========
+lda_toy_gen_model_for_pred_parameter_checking_0_0
+
+# TestSuite Name : lda_datatable_checking_pred
+# Test the parameter checking of lda_predict over a toy dataset.
+# Start TestSuite ==========
+lda_datatable_checking_pred_0_0
+lda_datatable_checking_pred_0_1
+lda_datatable_checking_pred_0_2
+lda_datatable_checking_pred_0_3
+lda_datatable_checking_pred_0_4
+lda_datatable_checking_pred_0_5
+lda_datatable_checking_pred_0_6
+
+# TestSuite Name : lda_modeltable_checking_pred
+# Test the parameter checking of lda_predict over a toy dataset.
+# Start TestSuite ==========
+lda_modeltable_checking_pred_0_0
+lda_modeltable_checking_pred_0_1
+
+# TestSuite Name : lda_outdatatable_checking_pred
+# Test the parameter checking of lda_predict over a toy dataset.
+# Start TestSuite ==========
+lda_outdatatable_checking_pred_0_0
+lda_outdatatable_checking_pred_0_1
+

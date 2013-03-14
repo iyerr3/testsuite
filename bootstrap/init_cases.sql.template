@@ -81,6 +81,86 @@ CREATE OR REPLACE VIEW testresultreport AS
     WHEN  trb.evaluation_function = 0 AND tr.evaluation_function = 0
     THEN 'PASSED'
 
+         WHEN tr.itemname like 'lda_compare_perplexity%compare_perplexity%'
+      THEN
+        CASE WHEN tr.issuccessful = true and tr.evaluation_function > 0
+        THEN 'PASSED'
+        ELSE 'FAILED'
+        END
+
+      WHEN tr.itemname in (
+        'lda_basic_function_nips_0_0_lda_train_0',
+ 	    'lda_basic_function_nips_0_0_lda_predict_1',
+		'lda_basic_function_nytimes_0_0_lda_train_0',
+	 	'lda_basic_function_nytimes_0_0_lda_predict_1',
+		'lda_datatable_checking_0_2_lda_train_0',
+		'lda_datatable_checking_0_3_lda_train_0',
+		'lda_datatable_checking_0_4_lda_train_0',
+		'lda_vocsize_checking_0_1_lda_train_0',
+		'lda_iternum_checking_0_1_lda_train_0',
+		'lda_toy_gen_model_for_pred_parameter_checking_0_0_lda_train_0',
+		'lda_datatable_checking_pred_0_2_lda_predict_0', 
+		'lda_datatable_checking_pred_0_3_lda_predict_0', 
+		'lda_datatable_checking_pred_0_4_lda_predict_0') 
+      THEN 
+        CASE WHEN tr.issuccessful = true and (
+            tr.result_info LIKE '%model table%output data table%' OR 
+            tr.result_info LIKE '%per-doc topic distribution and per-word topic assignments%')
+        THEN
+            'PASSED'
+        ELSE
+            'FAILED'
+        END
+
+      WHEN tr.itemname in (
+		'lda_datatable_checking_0_0_lda_train_0',
+		'lda_datatable_checking_0_1_lda_train_0',
+		'lda_datatable_checking_0_5_lda_train_0',
+		'lda_modeltable_checking_0_0_lda_train_0',
+		'lda_outdatatable_checking_0_0_lda_train_0',
+		'lda_vocsize_checking_0_0_lda_train_0',
+		'lda_topicnum_checking_0_0_lda_train_0',
+		'lda_topicnum_checking_0_1_lda_train_0',
+		'lda_iternum_checking_0_0_lda_train_0',
+		'lda_alpha_checking_0_0_lda_train_0',
+		'lda_alpha_checking_0_1_lda_train_0',
+		'lda_beta_checking_0_0_lda_train_0',
+		'lda_beta_checking_0_1_lda_train_0',
+		'lda_datatable_checking_pred_0_0_lda_predict_0',
+		'lda_datatable_checking_pred_0_1_lda_predict_0',
+		'lda_datatable_checking_pred_0_5_lda_predict_0',
+		'lda_modeltable_checking_pred_0_0_lda_predict_0',
+		'lda_outdatatable_checking_pred_0_0_lda_predict_0'
+		)
+      THEN 
+        CASE WHEN tr.issuccessful = false and (
+            tr.result_info LIKE '%invalid argument%' OR
+            tr.result_info LIKE '%rows have zero or negative count%' OR
+            tr.result_info LIKE '%rows have negative wordid%%' OR
+            tr.result_info LIKE '%the actual size of vocabulary % is larger than the specified %')
+        THEN
+            'PASSED'
+        ELSE
+            'FAILED'
+        END
+
+      WHEN tr.itemname in (
+		'lda_datatable_checking_0_6_lda_train_0', 
+		'lda_modeltable_checking_0_1_lda_train_0',
+		'lda_outdatatable_checking_0_1_lda_train_0',
+		'lda_datatable_checking_pred_0_6_lda_predict_0',
+		'lda_modeltable_checking_pred_0_1_lda_predict_0', 
+		'lda_outdatatable_checking_pred_0_1_lda_predict_0'
+	  )
+      THEN 
+		CASE WHEN tr.issuccessful = true and tr.result_info = '(No rows)' 
+        THEN
+            'PASSED'
+        ELSE
+            'FAILED'
+        END
+
+
     WHEN tr.itemname like 'cv_null_%'
     THEN
       CASE WHEN tr.issuccessful = trb.issuccessful

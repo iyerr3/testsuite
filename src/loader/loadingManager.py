@@ -21,18 +21,24 @@ cmd : "./convertor.sh <data> <sql> <table> <desc>"
           desc : "./desc/isolet_test.desc"
 
 """
-
-import os, sys, yaml, subprocess, types, re, time, urllib
+import os
+import sys
+import yaml
+import subprocess
+import types
+import re
+import time
+import urllib
 
 sys.path.append('../')
 from utility import dbManager, run_sql
+
 
 class loadingManager:
     """Manage loading"""
 
     def __init__(self, rootPath, schema, analyticsTools):
         """Load the config yaml"""
-
         self.__yamlPath = os.path.join(rootPath, "dataset/")
         self.__schema = schema
         self.__sqlPath = os.path.join(self.__yamlPath, "sql")
@@ -45,53 +51,53 @@ class loadingManager:
         if id not in self.__log:
             self.__log[id] = {}
         self.__log[id][attri] = value
-            
 
-    def __getYamls(self, dict, root):
+    def __getYamls(self, yaml_dict, root):
         """An assistant function called by __loadYaml."""
-        list = []
-        for key, value in dict.items():
-            if type(value) is types.DictType:
-                list += self.__getYamls(value, root + key + '/')
+        yaml_list = []
+        for key, value in yaml_dict.items():
+            if isinstance(value, dict):
+                yaml_list += self.__getYamls(value, root + key + '/')
             elif (value is None) or (value is True):
-                list.append(root + key +'/tables.yaml')
-        return list
-                
-    def __loadYaml(self, modules = None):
+                yaml_list.append(root + key + '/tables.yaml')
+        return yaml_list
+
+    def __loadYaml(self, modules=None):
         """Load from file."""
-        list = self.__getYamls(self.conf, self.__yamlPath)
+        yaml_list = self.__getYamls(self.conf, self.__yamlPath)
         if modules is not None:
             new_list = []
             for module in modules:
-                for yaml in list:
+                for yaml in yaml_list:
                     if module in yaml and yaml not in new_list:
                         new_list.append(yaml)
             return new_list
-        return list 
+        return yaml_list
 
-    def __convert(self, list, overwritten = False):
+    def __convert(self, data_list, overwritten=False):
         """Convert dataset to sql format."""
-        if list is None:
+        if data_list is None:
             sys.exit('No yamls found.')
         fail_list = []
-        for yaml_path in list:
-            if os.path.exists(yaml_path) is False: continue
+        for yaml_path in data_list:
+            if os.path.exists(yaml_path) is False:
+                continue
             (root, _) = os.path.split(yaml_path)
             cfg = yaml.load(open(yaml_path))
             if not 'tables' in cfg:
                 continue
             for table in cfg['tables']:
-                if 'skip' in table and table['skip'] == 'all' : continue
-
+                if 'skip' in table and table['skip'] == 'all':
+                    continue
                 cmd = ""
                 if 'cmd' in table:
                     cmd = table['cmd']
                 else:
                     cmd = cfg['cmd']
-
                 table_name = '.'.join([self.__schema, table['id']])
                 outSQL = os.path.join(self.__yamlPath, 'sql', table['id'] + '.sql')
-                if os.path.exists(outSQL + '.gz') is True and overwritten is False:
+                if os.path.exists(outSQL + '.gz') is True and \
+                        overwritten is False:
                     print "INFO : %s exists." % outSQL
                     continue
                 try:
@@ -102,16 +108,18 @@ class loadingManager:
                         elif tag == '<table>':
                             cmd = cmd.replace(tag, table_name)
                         else:
-                            cmd = cmd.replace(tag, self.__smartDownload(table['args'][tag[1:-1]], table))
+                            cmd = cmd.replace(tag,
+                                            self.__smartDownload(
+                                               table['args'][tag[1:-1]], table))
                     cwd = os.getcwd()
                     os.chdir(root)
                     start = time.time()
-                    subprocess.check_call(cmd, shell = True)
+                    subprocess.check_call(cmd, shell=True)
                     self.__logInfo(table['id'], 'convert', time.time() - start)
                     os.chdir(cwd)
 
                     self.__logInfo(table['id'], 'size', os.path.getsize(outSQL))
-                    subprocess.check_call('gzip -f %s' % outSQL, shell = True)
+                    subprocess.check_call('gzip -f %s' % outSQL, shell=True)
                     print 'INFO : Success Convert : %s' % table['id']
                 except Exception as e:
                     fail_list.append(table['id'])
@@ -122,7 +130,10 @@ class loadingManager:
         if str.startswith('http'):
             fileName = os.path.join(self.__yamlPath, 'download', str.split('/')[-1])
 
-            if fileName.endswith('.gzip') or (fileName.endswith('.gz') and not fileName.endswith('.tar.gz')) or fileName.endswith('.Z'):
+            if fileName.endswith('.gzip') or \
+                    (fileName.endswith('.gz') and not
+                        fileName.endswith('.tar.gz')) or \
+                    fileName.endswith('.Z'):
                 data_name = '.'.join(fileName.split('.')[:-1])
                 if os.path.exists(data_name) is False:
                     web_file = urllib.urlopen(str)
@@ -130,11 +141,11 @@ class loadingManager:
                     local_file.write(web_file.read())
                     web_file.close()
                     local_file.close()
-                    subprocess.call('gunzip %s' % fileName, shell = True)
+                    subprocess.call('gunzip -f %s' % fileName, shell=True)
                 return data_name
 
             elif os.path.exists(fileName) is False:
-                start  = time.time()
+                start = time.time()
                 web_file = urllib.urlopen(str)
                 local_file = open(fileName, 'w')
                 local_file.write(web_file.read())
@@ -143,65 +154,78 @@ class loadingManager:
                 elapsed = (time.time() - start)
                 self.__logInfo(table['id'], 'download', elapsed)
             return os.path.abspath(fileName)
-        return str     
+        return str
 
-    def __load(self, db_manager, kind, list, overload = False):
+    def __load(self, db_manager, kind, yaml_list, overload=False):
         """Load table into db."""
         fail_list = []
-        for yaml_path in list:
-            if os.path.exists(os.path.join(self.__yamlPath, yaml_path)) is False: continue
+        for yaml_path in yaml_list:
+            if os.path.exists(os.path.join(self.__yamlPath, yaml_path)) \
+                    is False:
+                continue
             yaml_content = yaml.load(open(os.path.join(self.__yamlPath, yaml_path)))
             if 'tables' in yaml_content:
                 for table in yaml_content['tables']:
-                    if 'skip' in table and (table['skip'] == 'all' or (table['skip'] in kind)):
+                    if 'skip' in table and \
+                            (table['skip'] == 'all' or (table['skip'] in kind)):
                         continue
                     table_name = '.'.join([self.__schema, table['id']])
                     outSQL = os.path.join(self.__yamlPath, 'sql', table['id'] + '.sql')
-                    output = run_sql.runSQL("SELECT count(*) FROM %s"%table_name, \
-                           psqlArgs = db_manager.getDBsqlArgs(), onErrorStop = False, Return = "all" )
+                    output = run_sql.runSQL("SELECT count(*) FROM %s" % table_name,
+                                            psqlArgs=db_manager.getDBsqlArgs(),
+                                            onErrorStop=False, Return="all")
                     #If table exists and no nedd to overload, skip this sql.
-                    if output.find('not exist') < 0 and output.find('     0') < 0 and overload is False:
+                    if output.find('not exist') < 0 and \
+                            output.find('     0') < 0 and overload is False:
                         continue
                     elif output.find('     0') > 0 and overload is False:
                         fail_list.append(table['id'])
-                        print "ERROR : Success create but copy failed : %s " % table['id']
-                        continue                
+                        print "ERROR : Success create but copy failed : %s" % table['id']
+                        continue
                     try:
                         start = time.time()
-                        subprocess.check_call('gunzip %s.gz' % outSQL, shell=True)
-                        run_sql.runSQL(outSQL, logport = db_manager.db_conf['port'], logdatabase = \
-                           db_manager.db_conf['database'], onErrorStop = False, isFile = True, source_path = db_manager.getDBenv() )
-                        subprocess.check_call('gzip -f %s'%outSQL, shell=True)
+                        subprocess.check_call('gunzip -f %s.gz' % outSQL, shell=True)
+                        run_sql.runSQL(outSQL, logport=db_manager.db_conf['port'],
+                                      logdatabase=db_manager.db_conf['database'],
+                                      onErrorStop=False, isFile=True,
+                                      source_path=db_manager.getDBenv())
+                        subprocess.check_call('gzip -f %s' % outSQL, shell=True)
                         self.__logInfo(table['id'], 'load', time.time() - start)
                         #Load additional sql file for table.
                         if 'sql' in table:
-                            run_sql.runSQL(os.path.join(self.__yamlPath, os.path.dirname(yaml_path), table['sql']), \
-                                logport = db_manager.db_conf['port'], logdatabase = db_manager.db_conf['database'], \
-                                onErrorStop = False,isFile = True, source_path = db_manager.getDBenv() )
-
+                            run_sql.runSQL(os.path.join(self.__yamlPath,
+                                    os.path.dirname(yaml_path), table['sql']),
+                                    logport=db_manager.db_conf['port'],
+                                    logdatabase=db_manager.db_conf['database'],
+                                    onErrorStop=False, isFile=True,
+                                    source_path=db_manager.getDBenv())
                         print "INFO : Success Loaded : %s " % table['id']
                     except:
                         fail_list.append(table['id'])
                         print "ERROR : Fail Loaded : %s " % table['id']
             #Load additional sql file for algorithm.
             if 'sql' in yaml_content:
-                run_sql.runSQL(os.path.join(self.__yamlPath, os.path.dirname(yaml_path), yaml_content['sql']), \
-                 logport = db_manager.db_conf['port'], logdatabase = db_manager.db_conf['database'], \
-                                onErrorStop = False, isFile = True, source_path = db_manager.getDBenv() )
-        print "FAILED LOAD TABLES:\n", fail_list 
-    def do(self, modules = None, overwritten = False, overload = False, initdb = False):
+                run_sql.runSQL(os.path.join(self.__yamlPath,
+                            os.path.dirname(yaml_path), yaml_content['sql']),
+                            logport=db_manager.db_conf['port'],
+                            logdatabase=db_manager.db_conf['database'],
+                            onErrorStop=False, isFile=True,
+                            source_path=db_manager.getDBenv())
+        print "FAILED LOAD TABLES:\n", fail_list
+
+    def do(self, modules=None, overwritten=False, overload=False, initdb=False):
         """Read yaml files, download, unzip, convert and load"""
-        list = self.__loadYaml(modules)
-        self.__convert(list, overwritten)
+        yaml_list = self.__loadYaml(modules)
+        self.__convert(yaml_list, overwritten)
         #Get info of each platform. Foreach, start it and do:
         for name in self.testdbs_conf:
             db_manager = dbManager.dbManager(self.testdbs_conf[name])
-            db_manager.start() 
+            db_manager.start()
 
             if initdb is True:
                 db_manager.initDB()
 
-            self.__load(db_manager, name.lower(), list, overload)
+            self.__load(db_manager, name.lower(), yaml_list, overload)
             db_manager.stop()
             print name
             total_time = 0.0
@@ -211,11 +235,13 @@ class loadingManager:
                     if key in ('load', 'convert', 'download'):
                         total_time += value
                     info += key + ':' + str(value) + '\t'
-                print id + '\t' +info
+                print id + '\t' + info
             print "TOTAL TIME SPENT:", total_time
+
 
 def main():
     loading_manager = loadingManager('..', 'madlibtestdata')
-    loading_manager.do(overwritten = True, overload = True)
+    loading_manager.do(overwritten=True, overload=True)
+
 if __name__ == '__main__':
     main()

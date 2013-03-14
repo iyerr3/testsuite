@@ -7056,4 +7056,147 @@
   </method>
 
 </algorithm>
+
+<algorithm>
+        <name>lda</name>
+        <method>
+            <name>lda_train</name>
+            <template>
+                 SELECT {madlib_schema}.lda_train(
+                                {datatable},
+                                {modeltable},
+                                {outputdatatable},
+                                {vocsize},
+                                {topicnum},
+                                {iternum},
+                                {alpha},  
+                                {beta}  
+                                ) AS Q;
+            </template>
+            <input_parameter>
+                <name>datatable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>modeltable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>outputdatatable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>vocsize</name>
+                <type>int4</type>
+            </input_parameter>
+            <input_parameter>
+                <name>topicnum</name>
+                <type>int4</type>
+                <default>100</default>
+            </input_parameter>
+            <input_parameter>
+                <name>iternum</name>
+                <type>int4</type>
+                <default>20</default>
+            </input_parameter>
+            <input_parameter>
+                <name>alpha</name>
+                <type>float</type>
+                <default>0.05</default>
+            </input_parameter>
+            <input_parameter>
+                <name>beta</name>
+                <type>float</type>
+                <default>0.01</default>
+            </input_parameter>
+        </method>
+        <method>
+            <name>lda_predict</name>
+            <template>
+                SELECT {madlib_schema}.lda_predict(
+                                {datatable},
+                                {modeltable},
+                                {outputdatatable}
+                                ) AS Q;
+            </template>
+            <input_parameter>
+                <name>datatable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>modeltable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>outputdatatable</name>
+                <type>text</type>
+            </input_parameter>
+        </method>
+        <!--
+        <method>
+            <name>lda_get_perplexity</name>
+            <template>
+                SELECT {madlib_schema}.lda_get_perplexity(
+                                {modeltable},
+                                {outputdatatable}
+                                ) AS Q;
+            </template>
+            <input_parameter>
+                <name>modeltable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>outputdatatable</name>
+                <type>text</type>
+            </input_parameter>
+        </method>
+        -->
+        <method>
+            <name>compare_perplexity</name>
+            <create>true</create>
+            <template>
+              SELECT madlibtestdata.compare_perplexity(
+                     {datatable},
+                     {tblr},
+                     {vocsize},
+                     {topicnum},
+                     {iternum},
+                     {alpha},
+                     {beta}
+                     ) AS report;
+            </template>
+            <input_parameter>
+                <name>datatable</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>tblr</name>
+                <type>text</type>
+            </input_parameter>
+            <input_parameter>
+                <name>vocsize</name>
+                <type>integer</type>
+            </input_parameter>
+            <input_parameter>
+                <name>topicnum</name>
+                <type>integer</type>
+            </input_parameter>
+            <input_parameter>
+                <name>iternum</name>
+                <type>integer</type>
+            </input_parameter>
+            <input_parameter>
+                <name>alpha</name>
+                <type>double precision</type>
+            </input_parameter>
+            <input_parameter>
+                <name>beta</name>
+                <type>double precision</type>
+            </input_parameter>
+            <output_parameter>
+                <name>report</name>
+                <type>double precision</type>
+            </output_parameter>
+        </method>
+  </algorithm>
 </algorithms>

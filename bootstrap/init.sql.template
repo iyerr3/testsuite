@@ -1,5 +1,7 @@
 DROP SCHEMA IF EXISTS $$$benchmark$$$ CASCADE;
 CREATE SCHEMA $$$benchmark$$$;
+DROP LANGUAGE IF EXISTS plpythonu;
+CREATE LANGUAGE plpythonu;
 SET SEARCH_PATH = $$$benchmark$$$;
 
 CREATE TABLE  testitemseq(id int,  runid int);
