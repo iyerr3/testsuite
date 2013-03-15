@@ -1,6 +1,6 @@
 DROP SCHEMA IF EXISTS $$$benchmark$$$ CASCADE;
 CREATE SCHEMA $$$benchmark$$$;
-DROP LANGUAGE IF EXISTS plpythonu;
+DROP LANGUAGE IF EXISTS plpythonu CASCADE;
 CREATE LANGUAGE plpythonu;
 SET SEARCH_PATH = $$$benchmark$$$;
 
