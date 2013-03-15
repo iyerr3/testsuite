@@ -130,7 +130,7 @@
 	            <parameters>
                     <parameter>
 		                <name>datatable</name>
-		                <value>madlibtestdata.lda_20newsgroup_corpus</value>
+		                <value>madlibtestdata.lda_20newsgroups_corpus</value>
                     </parameter>
                     <parameter>
 		                <name>modeltable</name>
@@ -142,7 +142,7 @@
                     </parameter>
                     <parameter>
                         <name>vocsize</name>
-		                <value>113175</value>
+		                <value>113176</value>
                     </parameter>
     	        </parameters>
 	    	    <tear_down>
@@ -153,7 +153,7 @@
 	            <parameters>
                     <parameter>
 		                <name>datatable</name>
-		                <value>madlibtestdata.lda_20newsgroup_corpus</value>
+		                <value>madlibtestdata.lda_20newsgroups_corpus</value>
                     </parameter>
                     <parameter>
 		                <name>modeltable</name>
@@ -192,7 +192,7 @@
                     </parameter>
                     <parameter>
                         <name>vocsize</name>
-		                <value>37945</value>
+		                <value>37946</value>
                     </parameter>
     	        </parameters>
 	    	    <tear_down>

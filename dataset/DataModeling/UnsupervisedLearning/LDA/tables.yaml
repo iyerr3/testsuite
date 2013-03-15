@@ -10,3 +10,9 @@ tables :
     - id : lda_perplexity
       args :
           data : "../../../download/lda_perplexity.tar.gz"
+    - id : lda_20newsgroup
+      args :
+          data : "../../../download/lda_20newsgroup.tar.gz"
+    - id : lda_reuters21578
+      args :
+          data : "../../../download/lda_reuters21578.tar.gz"

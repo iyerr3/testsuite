@@ -21,6 +21,10 @@ SET default_with_oids = false;
 --
 
 COPY testitemresultbaseline (itemname, algorithmic, method, elapsedtime, evaluation_function, issuccessful, result_info, analysis_tool) FROM stdin;
+lda_basic_function_20newsgroup_0_0_lda_train_0	lda	lda_train	3313072	\N	t	-[ RECORD 1 ]-----------------------------------------\nq | (madlibtestresult.lda_model,"model table")\n-[ RECORD 2 ]-----------------------------------------\nq | (madlibtestresult.lda_outdata,"output data table")	\N
+lda_basic_function_reuters21578_0_0_lda_train_0	lda	lda_train	3313072	\N	t	-[ RECORD 1 ]-----------------------------------------\nq | (madlibtestresult.lda_model,"model table")\n-[ RECORD 2 ]-----------------------------------------\nq | (madlibtestresult.lda_outdata,"output data table")	\N
+lda_basic_function_20newsgroup_0_0_lda_predict_1	lda	lda_predict	442953	\N	t	-[ RECORD 1 ]---------------------------------------------------------------------------------\nq | (madlibtestresult.lda_outdata,"per-doc topic distribution and per-word topic assignments")	\N
+lda_basic_function_reuters21578_0_0_lda_predict_1	lda	lda_predict	442953	\N	t	-[ RECORD 1 ]---------------------------------------------------------------------------------\nq | (madlibtestresult.lda_outdata,"per-doc topic distribution and per-word topic assignments")	\N
 lda_compare_perplexity_0_0_compare_perplexity_0	lda	compare_perplexity	5378	100	t	-[ RECORD 1 ]\nreport | 100	\N
 lda_compare_perplexity_0_1_compare_perplexity_0	lda	compare_perplexity	7583	100	t	-[ RECORD 1 ]\nreport | 100	\N
 lda_compare_perplexity_0_2_compare_perplexity_0	lda	compare_perplexity	9842	100	t	-[ RECORD 1 ]\nreport | 100	\N
