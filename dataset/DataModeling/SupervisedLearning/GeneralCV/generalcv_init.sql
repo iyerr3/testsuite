@@ -44,7 +44,7 @@ begin
             where fold = '|| fold ||' and dataset = $_valString$'|| dataset_name ||'$_valString$'
             into r_error;
 
-    if r_error >= cv_error - 1.28*cv_error_std and r_error <= cv_error + 1.28*cv_error_std then
+    if r_error >= cv_error - 2.0*cv_error_std and r_error <= cv_error + 2.0*cv_error_std then
         compare_rst := 100;
     else
         compare_rst := -100;
