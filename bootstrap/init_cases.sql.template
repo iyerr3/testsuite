@@ -352,26 +352,47 @@ SELECT runid, ti.algorithmic as suitename, ti.casename,
                     THEN 'PASSED'
                     ELSE 'FAILED'
                END
-    WHEN  (tr.itemname like 'svm_cls_dot_ds_0_7%' OR tr.itemname like 'svm_cls_dot_ds_0_15%' OR tr.itemname like 'svm_cls_polynomial_ds_0_7%'
-          OR tr.itemname like 'svm_cls_polynomial_ds_0_15%' OR tr.itemname like 'svm_cls_gaussian_ds_0_7%' OR tr.itemname like 'svm_cls_gaussian_ds_para_0_7%'
-          OR tr.itemname like 'svm_reg_dot_ds_0_4%' OR tr.itemname like 'svm_reg_dot_ds_0_18%' OR tr.itemname like 'svm_reg_polynomial_ds_0_4%'
-          OR tr.itemname like 'svm_reg_polynomial_ds_0_18%' OR tr.itemname like 'svm_reg_gaussian_ds_0_4%' OR tr.itemname like 'svm_reg_gaussian_ds_para_0_4%')
-          AND tr.itemname not like 'svm_%_3'
-          THEN CASE WHEN (tr.itemname not like '%0' AND tr.issuccessful = false)
-                        OR (tr.itemname like '%0'
-                          AND tr.result_info LIKE '%the maximum number of features is 102400%')
+    WHEN  ( tr.itemname like 'svm_cls_dot_ds_0_7%' OR 
+            tr.itemname like 'svm_cls_dot_ds_0_15%' OR 
+            tr.itemname like 'svm_cls_polynomial_ds_0_7%' OR 
+            tr.itemname like 'svm_cls_polynomial_ds_0_15%' OR 
+            tr.itemname like 'svm_cls_gaussian_ds_0_7%' OR 
+            tr.itemname like 'svm_cls_gaussian_ds_para_0_7%'OR 
+            tr.itemname like 'svm_reg_dot_ds_0_4%' OR 
+            tr.itemname like 'svm_reg_dot_ds_0_18%' OR 
+            tr.itemname like 'svm_reg_polynomial_ds_0_4%'OR 
+            tr.itemname like 'svm_reg_polynomial_ds_0_18%' OR 
+            tr.itemname like 'svm_reg_gaussian_ds_0_4%' OR 
+            tr.itemname like 'svm_reg_gaussian_ds_para_0_4%'
+          ) AND 
+          tr.itemname not like 'svm_%_3'
+          THEN CASE WHEN  ( tr.itemname not like '%0' AND 
+                            tr.issuccessful = false
+                          ) OR 
+                          ( tr.itemname like '%0' AND 
+                            tr.result_info LIKE '%the maximum number of features is 102400%')
                THEN 'PASSED'
                ELSE 'FAILED'
                END
 
-      WHEN (trb.evaluation_function = 0 AND tr.evaluation_function <> 0) or (trb.evaluation_function <> 0 AND tr.evaluation_function = 0)
+      WHEN  ( trb.evaluation_function = 0 AND 
+              tr.evaluation_function <> 0) OR 
+            ( trb.evaluation_function <> 0 AND 
+              tr.evaluation_function = 0)
       THEN  CASE WHEN trb.itemname like 'svm_%predict_score%'  THEN 'PASSED'
                   ELSE 'FAILED'
                   END
  
-      WHEN  trb.itemname not like 'rf%' AND trb.itemname not like '%cross_validate%' AND trb.itemname not like 'svm%' AND trb.itemname not like 'multinomia%'
-          AND  trb.evaluation_function IS NOT NULL AND (trb.evaluation_function - tr.evaluation_function) > 0.0001
-      THEN 'FAILED : Evaluation function such as score, gof decreased: baseline is '::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and runtime is '::text  || ((tr.evaluation_function)::decimal(6,5))::text
+      WHEN  trb.itemname not like 'rf%' AND 
+            trb.itemname not like '%cross_validate%' AND 
+            trb.itemname not like 'svm%' AND 
+            trb.itemname not like 'multinomia%' AND  
+            trb.evaluation_function IS NOT NULL AND 
+            (trb.evaluation_function - tr.evaluation_function) > 0.0001
+      THEN 'FAILED : Evaluation function such as score, gof decreased: baseline is '::text  || 
+            ((trb.evaluation_function)::decimal(6,5))::text  || 
+            ' and runtime is '::text  || 
+            ((tr.evaluation_function)::decimal(6,5))::text
 
       -- random forest
       WHEN  ( trb.itemname like 'rf%'  OR  
@@ -530,26 +551,46 @@ CREATE OR REPLACE VIEW performancedetailreport AS
 (SELECT runid, suitename, casename, itemname, testresult,
  CASE WHEN testresult like 'PASSED%'
  THEN
-      CASE WHEN itemname like '%c45_clean%' OR basetime < 5000 OR runtime < 5000 OR itemname like 'kmeans_random%'
+      CASE WHEN itemname like '%c45_clean%' OR 
+                basetime < 5000 OR 
+                runtime < 5000 OR itemname like 'kmeans_random%'
       THEN 'Not justification functions in performance evaluation'
 
-      WHEN (basetime::float8 < 10000 and ((runtime::float8 / basetime::float8) between 0.3 and 3))
-              OR ((basetime::float8 BETWEEN 10000 AND 180000) and ((runtime::float8 / basetime::float8) between 0.7 and 1.3))
-              OR (basetime::float8 >= 120000 and ((runtime::float8 / basetime::float8) between 0.9 and 1.1))
-      THEN 'PERFORMANCE No regression: base time is ' || (basetime/1000)::text || ' seconds and run time is ' || (runtime/1000)::text || ' seconds'
+      WHEN  basetime::float8 < 10000 AND 
+            ((runtime::float8 / basetime::float8) between 0.3 AND 3) OR 
+            ( (basetime::float8 BETWEEN 10000 AND 180000) AND 
+              ((runtime::float8 / basetime::float8) between 0.7 AND 1.3)
+            ) OR 
+            ( basetime::float8 >= 120000 AND 
+              ((runtime::float8 / basetime::float8) between 0.9 AND 1.1)
+            )
+      THEN 'PERFORMANCE No regression: base time is ' || (basetime/1000)::text || 
+            ' seconds AND run time is ' || (runtime/1000)::text || ' seconds'
 
-       WHEN (basetime::float8 < 10000  and ((runtime::float8 / basetime::float8)  <  0.3 ))
-                OR ((basetime::float8 BETWEEN 10000 AND 180000) and ((runtime::float8 / basetime::float8)  <  0.7 ))
-                OR (basetime::float8 > 180000  and ((runtime::float8 / basetime::float8)  <  0.9 ))
-       THEN 'PERFORMANCE BETTER: base time is ' || (basetime/1000)::text || ' seconds and run time is ' || (runtime/1000)::text || ' seconds'
+       WHEN ( basetime::float8 < 10000  AND 
+              ((runtime::float8 / basetime::float8)  <  0.3 )
+            ) OR 
+            ( (basetime::float8 BETWEEN 10000 AND 180000) AND 
+              ((runtime::float8 / basetime::float8)  <  0.7 )
+            ) OR 
+            ( basetime::float8 > 180000  AND 
+              ((runtime::float8 / basetime::float8)  <  0.9 )
+            )
+       THEN 'PERFORMANCE BETTER: base time is ' || (basetime/1000)::text || 
+            ' seconds AND run time is ' || (runtime/1000)::text || ' seconds'
 
-       WHEN (basetime::float8 < 5000  and ((runtime::float8 / basetime::float8)  > 3 ))
-                OR ((basetime::float8 BETWEEN 10000 AND 180000) and ((runtime::float8 / basetime::float8)  > 1.3))
-                OR (basetime::float8 > 180000  and ((runtime::float8 / basetime::float8)  > 1.1))
-       THEN 'PERFORMANCE WORSE: base time is ' || (basetime/1000)::text || ' seconds and run time is ' || (runtime/1000)::text || ' seconds'
-
-
-        ELSE 'PERFORMANCE UNKNOWN'
+       WHEN ( basetime::float8 < 5000  AND 
+              ((runtime::float8 / basetime::float8)  > 3 )
+            ) OR 
+            ( (basetime::float8 BETWEEN 10000 AND 180000) AND 
+              ((runtime::float8 / basetime::float8)  > 1.3)
+            ) OR 
+            ( basetime::float8 > 180000  AND 
+              ((runtime::float8 / basetime::float8)  > 1.1)
+            )
+       THEN 'PERFORMANCE WORSE: base time is ' || (basetime/1000)::text || 
+            ' seconds AND run time is ' || (runtime/1000)::text || ' seconds'
+       ELSE 'PERFORMANCE UNKNOWN'
        END
   ELSE 'PERFORMANCE UNKNOWN'
   END AS perf_status,
@@ -573,7 +614,8 @@ WHERE runid = ( SELECT max(testitemseq.runid) FROM testitemseq)
                           FROM testresultreport
                           WHERE testresult  LIKE 'FAILED%'::text
                            AND itemname NOT LIKE '%negative%'::text
-                           AND runid = ( SELECT max(testitemseq.runid)FROM testitemseq ))
+                           AND runid = ( SELECT max(testitemseq.runid)
+                                          FROM testitemseq ))
             AND itemname NOT LIKE '%negative%'::text
 UNION
 SELECT  casename,
@@ -597,7 +639,8 @@ GROUP BY  suitename, testresult;
 
 CREATE OR REPLACE VIEW performancesummary
 AS
-SELECT suitename, substr(perf_status, 1, position(':' in perf_status) -1) as perfstatus, count(*)
+SELECT suitename, substr(perf_status, 1, position(':' in perf_status) - 1) 
+          AS perfstatus, count(*)
 FROM performancedetailreport
 WHERE runid = (SELECT MAX(runid) from testitemseq)
 AND   position(':' in perf_status) > 0
@@ -616,9 +659,13 @@ SELECT COUNT(*) AS failedcases,
        j.jiradescription
 FROM jiras_cases as jc,
              madlib_jiras as j,
-             (SELECT distinct algorithmic, casename from testitemresult as tr, testitems as ti
-              WHERE runid = (select max(runid) from testitemseq)
-                 AND issuccessful IS NULL and tr.itemname = ti.itemname) as tr
-WHERE j.jiraid = jc.jiraid AND tr.casename = jc.casename
-GROUP BY  jc.jiraid, j.jiratype, algorithmic,j.jiradescription;
+             (SELECT distinct algorithmic, casename from testitemresult AS tr, 
+                              testitems AS ti
+              WHERE runid = (select max(runid) from testitemseq) AND 
+                    issuccessful IS NULL AND 
+                    tr.itemname = ti.itemname
+              ) AS tr
+WHERE j.jiraid = jc.jiraid AND 
+      tr.casename = jc.casename
+GROUP BY  jc.jiraid, j.jiratype, algorithmic, j.jiradescription;
 
