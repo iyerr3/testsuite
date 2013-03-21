@@ -12,7 +12,6 @@ DataModeling :
     UnsupervisedLearning :
         kMeansClustering : 
         AssociationRules : 
-        ParallelLatentDirichletAllocation : 
         LDA :
 InferentialStatistics :
     HypothesisTests : 
