@@ -9,9 +9,6 @@ case_svm_classification
 
 case_naive_bayes
 
-case_plda_feature
-case_plda_corner_negative
-
 case_linear
 case_logistic_regression
 case_logregr_output

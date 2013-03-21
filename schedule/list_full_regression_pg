@@ -7,9 +7,6 @@ case_svm_pgfull
 
 case_naive_bayes_pgbasic
 
-case_plda_feature_pgbasic
-case_plda_corner_negative_pgbasic
-
 case_assoc_rules_ft_pg
 case_ht_feature
 case_ht_corner

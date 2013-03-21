@@ -1,6 +1,0 @@
-- cases : case_lda_perplexity
-  platform : GPDB_4.2.3.0
-- cases : case_lda_feature
-  platform : GPDB_4.2.3.0
-- cases : case_lda_corner
-  platform : GPDB_4.2.3.0

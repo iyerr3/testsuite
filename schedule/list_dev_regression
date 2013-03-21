@@ -18,10 +18,6 @@ case_svm_basic
 
 case_naive_bayes
 
-case_plda_feature
-case_plda_corner_negative
-
-#case_error_new
 case_assoc_rules_basic
 case_rf_small
 case_dt_small
