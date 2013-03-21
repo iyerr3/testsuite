@@ -47,7 +47,8 @@ CREATE TABLE jiras_cases(
 
 
 CREATE OR REPLACE VIEW testresultreport AS
-(SELECT runid, ti.algorithmic as suitename, ti.casename,
+(
+SELECT runid, ti.algorithmic as suitename, ti.casename,
  CASE WHEN trb.itemname IS NOT NULL
       THEN trb.itemname
       ELSE tr.itemname
@@ -63,9 +64,9 @@ CREATE OR REPLACE VIEW testresultreport AS
     THEN 'NEW CASES'
 
     WHEN tr.itemname IS NULL OR ti.itemname IS NULL
-    THEN 'FAILED : NO RESULT OR REMOVE CASES'
+    THEN 'FAILED : NO RESULT OR REMOVE CASE FILE'
 
-    WHEN tr.itemname like 'svm_%predict_score%' and resultlocation like 'PG%'
+    WHEN tr.itemname like 'svm_%predict_score%' AND resultlocation like 'PG%'
        THEN CASE
                 WHEN tr.issuccessful = trb.issuccessful
                   OR tr.result_info like '%list index out of range%'
@@ -73,9 +74,10 @@ CREATE OR REPLACE VIEW testresultreport AS
                 ELSE 'FAILED'
             END
 
-    WHEN  trb.issuccessful <> tr.issuccessful
-        OR (  trb.evaluation_function IS NOT NULL
-          AND tr.evaluation_function IS NULL)
+    WHEN  trb.issuccessful <> tr.issuccessful OR 
+          (  trb.evaluation_function IS NOT NULL AND
+             tr.evaluation_function IS NULL
+          )
     THEN 'FAILED'
 
     WHEN  trb.evaluation_function = 0 AND tr.evaluation_function = 0
@@ -330,40 +332,6 @@ CREATE OR REPLACE VIEW testresultreport AS
                   ELSE 'FAILED'
                END
 
-        WHEN tr.itemname like 'plda%negative%'
-        THEN CASE
-              WHEN tr.issuccessful = true
-              THEN 'PASSED'
-              WHEN tr.issuccessful = false
-                AND (
-                           tr.result_info LIKE '%column "contents" is of type integer[] but expression is of type text[]%'
-                        OR tr.result_info like '%column "contents" does not exist%'
-                        OR tr.result_info like '%column "dict" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_gcounts_datatype_model" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_gcounts_name_model" does not exist%'
-                        OR tr.result_info like '%column "id" is of type integer but expression is of type text%'
-                        OR tr.result_info like '%column "id" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_iternum_datatype_model" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_iternum_name_model" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_tcounts_datatype_model" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_column_tcounts_name_model" does not exist%'
-                        OR tr.result_info like '%relation "plda_existing_out_labeling" already exists%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_name_dict" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_name_model" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_name_corpus" does not exist%'
-                        OR tr.result_info like '%error: dictionary table is not of the expected form%'
-                        OR tr.result_info like '%column "dict" does not exist%'
-                        OR tr.result_info like '%column "id" is of type integer but expression is of type text%'
-                        OR tr.result_info like '%column "id" does not exist%'
-                        OR tr.result_info like '%column "contents" is of type integer[] but expression is of type text[]%'
-                        OR tr.result_info like '%column "contents" does not exist%'
-                        OR tr.result_info like '%relation "plda_existing_out_model" already exists%'
-                        OR tr.result_info like '%relation "plda_existing_out_corpus" already exists%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_name_corpus" does not exist%'
-                        OR tr.result_info like '%relation "madlibtestdata.plda_invalid_name_dict" does not exist%')
-           THEN 'PASSED'
-        ELSE 'FAILED'
-        END
     -- Naive Bayes
     WHEN (tr.itemname like 'nb_%test_calculate_accuracy%')
     THEN  CASE  WHEN    tr.issuccessful = true
@@ -400,52 +368,127 @@ CREATE OR REPLACE VIEW testresultreport AS
       THEN  CASE WHEN trb.itemname like 'svm_%predict_score%'  THEN 'PASSED'
                   ELSE 'FAILED'
                   END
-
+ 
       WHEN  trb.itemname not like 'rf%' AND trb.itemname not like '%cross_validate%' AND trb.itemname not like 'svm%' AND trb.itemname not like 'multinomia%'
           AND  trb.evaluation_function IS NOT NULL AND (trb.evaluation_function - tr.evaluation_function) > 0.0001
       THEN 'FAILED : Evaluation function such as score, gof decreased: baseline is '::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and runtime is '::text  || ((tr.evaluation_function)::decimal(6,5))::text
 
-      WHEN  (trb.itemname like 'rf%'  OR  trb.itemname like '%cross_validate%' OR trb.itemname  like 'multinomia%') and trb.evaluation_function IS NOT NULL AND (tr.evaluation_function / trb.evaluation_function) < 0.7
-      THEN 'FAILED : Evaluation function decreased: baseline is '::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and runtime is '::text  || ((tr.evaluation_function)::decimal(6,5))::text
+      -- random forest
+      WHEN  ( trb.itemname like 'rf%'  OR  
+              trb.itemname like '%cross_validate%' OR 
+              trb.itemname  like 'multinomia%') AND 
+            trb.evaluation_function IS NOT NULL AND 
+            (tr.evaluation_function / trb.evaluation_function) < 0.7
+      THEN 'FAILED : Evaluation function decreased: baseline is '::text  || 
+          ((trb.evaluation_function)::decimal(6,5))::text  || 
+          ' and runtime is '::text  || 
+          ((tr.evaluation_function)::decimal(6,5))::text
 
 
-      WHEN  (trb.itemname like 'svm%'  ) and trb.evaluation_function IS NOT NULL AND (tr.evaluation_function / trb.evaluation_function) < 0.0000001
-      THEN 'FAILED : Evaluation function of support vecotr machines decreased: baseline is '::text  || (trb.evaluation_function)::text  || ' and runtime is '::text  || (tr.evaluation_function)::text
+      WHEN  trb.itemname like 'svm%' AND 
+            trb.evaluation_function IS NOT NULL AND 
+            (tr.evaluation_function / trb.evaluation_function) < 0.0000001
+      THEN 'FAILED : Evaluation function of support vecotr machines decreased: baseline is '::text  || 
+            (trb.evaluation_function)::text  || 
+            ' and runtime is '::text  || 
+            (tr.evaluation_function)::text
 
-      WHEN  (trb.issuccessful = tr.issuccessful
-        AND (trb.itemname like 'kmeans_%' or trb.itemname like 'multinomial_%'
-          or trb.itemname like 'logistic_%'  or trb.itemname like 'linear_%'
-          or trb.itemname like '%_c45_display%' or trb.itemname like 'svm_%0'
-          or (trb.itemname like 'rf%' and trb.itemname not like '%negative%' and (trb.itemname like '%_rf_train%' or trb.itemname like '%_rf_display%'))
-          )
-        )
-      THEN  'PASSED'
-
-
-      WHEN  trb.evaluation_function IS NULL AND (trb.itemname like 'dt%' or trb.itemname like 'rf%' or trb.itemname like 'ar%') and trb.itemname like '%negative%' and (tr.issuccessful = trb.issuccessful or substr(trb.result_info,1,80) = substr(tr.result_info,1,80) or tr.result_info like '%invalid input syntax for type double precision:%' or tr.result_info like '%each feature in feature_col_names must be a column of the training table%' or tr.result_info like '%each feature in continuous_feature_names must be in the feature_col_names%')
+      WHEN  trb.issuccessful = tr.issuccessful AND 
+              ( trb.itemname like 'kmeans_%' OR 
+                trb.itemname like 'multinomial_%' OR 
+                trb.itemname like 'logistic_%'  OR 
+                trb.itemname like 'linear_%' OR 
+                trb.itemname like '%_c45_display%' OR 
+                trb.itemname like 'svm_%0' OR 
+                ( trb.itemname like 'rf%' AND 
+                  trb.itemname not like '%negative%' AND 
+                  (   trb.itemname like '%_rf_train%' OR 
+                      trb.itemname like '%_rf_display%')
+                )
+              )
       THEN 'PASSED'
 
-      WHEN  trb.evaluation_function IS NULL AND trb.issuccessful = false AND tr.issuccessful = false
+      WHEN  trb.evaluation_function IS NULL AND 
+            ( trb.itemname like 'dt%' OR 
+              trb.itemname like 'rf%' OR 
+              trb.itemname like 'ar%'
+            ) AND 
+            trb.itemname like '%negative%' AND 
+            ( tr.issuccessful = trb.issuccessful OR 
+              substr(trb.result_info,1,80) = substr(tr.result_info,1,80) OR 
+              tr.result_info like '%invalid input syntax for type double%' OR 
+              tr.result_info like '%each feature in feature_col_names must be a column%' OR 
+              tr.result_info like '%each feature in continuous_feature_names must be in the feature_col_names%')
       THEN 'PASSED'
 
-      WHEN  trb.evaluation_function IS NULL AND trb.result_info <> tr.result_info
+      WHEN  trb.evaluation_function IS NULL AND 
+            trb.issuccessful = false AND 
+            tr.issuccessful = false
+      THEN 'PASSED'
+
+      WHEN  trb.evaluation_function IS NULL AND 
+            trb.result_info <> tr.result_info
       THEN 'FAILED : Expected result not matched'
 
-      WHEN (trb.itemname not like 'rf%' AND trb.itemname not like '%cross_validate%'  AND trb.itemname not like 'svm%'  AND trb.itemname not like 'multinomia%' AND (trb.evaluation_function IS NOT NULL AND ((trb.evaluation_function - tr.evaluation_function) between -0.0001 and 0.0001)))
-          OR ((trb.itemname like 'rf%' OR  trb.itemname like '%cross_validate%' OR trb.itemname  like 'multinomia%') AND (trb.evaluation_function IS NOT NULL AND ((tr.evaluation_function / trb.evaluation_function) between 0.7 and 1.3 )))
-           OR ((trb.itemname like 'svm%' ) AND (trb.evaluation_function IS NOT NULL AND ((tr.evaluation_function / trb.evaluation_function) between 0.0000001 and 10000000 )))
-          OR (trb.evaluation_function IS NULL AND trb.result_info = tr.result_info)
+      WHEN  ( trb.itemname not like 'rf%' AND 
+              trb.itemname not like '%cross_validate%'  AND 
+              trb.itemname not like 'svm%'  AND 
+              trb.itemname not like 'multinomia%' AND 
+              ( trb.evaluation_function IS NOT NULL AND 
+                ( (trb.evaluation_function - tr.evaluation_function) between 
+                    -0.0001 AND 0.0001
+                )
+              )
+            ) OR 
+            ( ( trb.itemname like 'rf%' OR  
+                trb.itemname like '%cross_validate%' OR 
+                trb.itemname  like 'multinomia%'
+              ) AND 
+              ( trb.evaluation_function IS NOT NULL AND 
+                (tr.evaluation_function / trb.evaluation_function) between 
+                    0.7 AND 1.3 
+              )
+            ) OR 
+            ( trb.itemname like 'svm%' AND 
+              ( trb.evaluation_function IS NOT NULL AND 
+                (tr.evaluation_function / trb.evaluation_function) between 
+                    0.0000001 AND 10000000 
+              )
+            ) OR 
+            ( trb.evaluation_function IS NULL AND 
+              trb.result_info = tr.result_info
+            )
       THEN 'PASSED'
 
 
-      WHEN  trb.itemname not like 'rf%' AND trb.itemname not like '%cross_validate%' AND trb.itemname not like 'svm%'  AND trb.itemname not like 'multinomia%' AND trb.evaluation_function IS NOT NULL AND (trb.evaluation_function - tr.evaluation_function) < 0.0001
-      THEN 'PASSED : Evaluation function such as score, gof increased: baseline is '::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and runtime is '::text  || ((tr.evaluation_function)::decimal(6,5))::text
+      WHEN  trb.itemname not like 'rf%' AND 
+            trb.itemname not like '%cross_validate%' AND 
+            trb.itemname not like 'svm%'  AND 
+            trb.itemname not like 'multinomia%' AND 
+            trb.evaluation_function IS NOT NULL AND 
+            (trb.evaluation_function - tr.evaluation_function) < 0.0001
+      THEN 'PASSED : Evaluation function such as score, gof increased: baseline is '::text  || 
+            ((trb.evaluation_function)::decimal(6,5))::text  || 
+            ' and runtime is '::text  || 
+            ((tr.evaluation_function)::decimal(6,5))::text
 
-      WHEN  (trb.itemname like 'rf%' OR  trb.itemname like '%cross_validate%' OR trb.itemname  like 'multinomia%') AND trb.evaluation_function IS NOT NULL AND (tr.evaluation_function / trb.evaluation_function) > 1.3
-      THEN 'PASSED : Evaluation function of random forest increased: baseline is '::text  || ((trb.evaluation_function)::decimal(6,5))::text  || ' and runtime is '::text  || ((tr.evaluation_function)::decimal(6,5))::text
+      WHEN  ( trb.itemname like 'rf%' OR  
+              trb.itemname like '%cross_validate%' OR 
+              trb.itemname  like 'multinomia%'
+            ) AND 
+            trb.evaluation_function IS NOT NULL AND 
+            (tr.evaluation_function / trb.evaluation_function) > 1.3
+      THEN 'PASSED : Evaluation function of random forest increased: baseline is '::text  || 
+            ((trb.evaluation_function)::decimal(6,5))::text  || 
+            ' and runtime is '::text  || 
+            ((tr.evaluation_function)::decimal(6,5))::text
 
-      WHEN  (trb.itemname like 'svm%' ) AND trb.evaluation_function IS NOT NULL AND (tr.evaluation_function / trb.evaluation_function) > 10000000
-      THEN 'PASSED : Evaluation function of svm increased: baseline is '::text  || (trb.evaluation_function)::text  || ' and runtime is '::text  || (tr.evaluation_function)::text
+      WHEN  trb.itemname like 'svm%' AND 
+            trb.evaluation_function IS NOT NULL AND 
+            (tr.evaluation_function / trb.evaluation_function) > 10000000
+      THEN 'PASSED : Evaluation function of svm increased: baseline is '::text  || 
+            (trb.evaluation_function)::text  || 
+            ' and runtime is '::text  || (tr.evaluation_function)::text
 
       ELSE 'CASES NEED TO BE INVESTIGATE'
  END AS testresult,
