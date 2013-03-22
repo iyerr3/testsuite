@@ -530,9 +530,6 @@ multinomial_logistic_regression_utf8_character_0_2
 ######## PG error message is without source code file name while GP has ########
 non_central_f_quantile_feature_test_df1_0_0
 
-### Stability evaluation UDF is not available ###
-plda_stability_0_0
-plda_stability_0_6
 
 ##### UTF8 is not acceptable in the pulse server #####
 multinomial_logistic_regression_utf8_character_0_1
@@ -563,3 +560,13 @@ multinomial_logistic_regression_ctas_0_1
 km_ctas_0_0
 km_pp_ctas_0_0
 km_random_ctas_0_0
+
+
+### HEAD ###
+### JiraId: MADLIB-788###
+### Des: RF tests fail due to incorrect baseline settings
+### Type: 2 ###
+rf_gini_dataset_0_7
+rf_gainratio_dataset_0_7
+rf_infogain_dataset_0_7 
+
