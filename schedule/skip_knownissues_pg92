@@ -552,3 +552,12 @@ km_nonfinite_2water_treatment_noninfinite_0_0
 km_pp_noninfinite_0_1
 km_random_noninfinite_0_1
 ### END ###
+
+### HEAD ###
+### JiraId: MADLIB-788###
+### Des: RF tests fail due to incorrect baseline settings
+### Type: 2 ###
+rf_gini_dataset_0_7
+rf_gainratio_dataset_0_7
+rf_infogain_dataset_0_7 
+

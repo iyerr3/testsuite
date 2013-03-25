@@ -98,77 +98,6 @@ students_t_pdf_negative_case_df_0_3
 students_t_quantile_negative_case_df_0_3
 ### END ###
 
-
-###### PLDA ######
-
-### HEAD ###
-### JiraId: MADLIB-450 ###
-### Type: 2 ###
-### Des: invalid memory alloc error in plda_run ###
-plda_stability_0_1
-plda_stability_0_3
-plda_stability_0_4
-plda_stability_0_5
-plda_basic_functionality_closed_set_test_0_0
-plda_basic_functionality_closed_set_test_0_3
-plda_basic_functionality_open_set_test_0_0
-plda_basic_functionality_open_set_test_0_1
-### run more than 1 hour
-plda_stability_0_2
-### END ###
-
-
-### HEAD ###
-### JiraId: MADLIB-453 ###
-### Type: 2 ###
-### Des: error messages with invalid corpus form need to improved ###
-plda_basic_functionality_closed_set_test_0_2
-### END ###
-
-### HEAD ###
-### JiraId: MADLIB-455 ###
-### Type: 2 ###
-### Des: "UnboundLocalError: local variable "new_table_id" referenced before assignment" error with negative or zero iteration number ###
-plda_run_negative_numiter_0_0
-plda_run_negative_numiter_0_1
-### END ###
-
-### HEAD ###
-### JiraId: MADLIB-456 ###
-### Type: 2 ###
-### Des: overflow error in plda_run with negative or zero number of topics ###
-plda_run_negative_numtopics_0_0
-plda_run_negative_numtopics_0_1
-### END ###
-
-### HEAD ###
-### JiraId: MADLIB-657 ###
-### Type: 2 ###
-### Des: Handling of empty corpus in plda training phase need to be improved ###
-plda_run_empty_test_table_0_0
-### END ###
-
-### HEAD ###
-### JiraId: MADLIB-658 ###
-### Type: 2 ###
-### Des: Need to add error handling of incorrect data Type for dictionary in plda training and classification phases ###
-plda_run_negative_column_dict_datatype_dicttable_0_0
-plda_label_negative_column_dict_datatype_dict_table_0_0
-### END ###
-
-### HEAD ###
-### JiraId: MADLIB-659 ###
-### Type: 2 ###
-### Des: Need to add domain check for alpha and eta in plda training and classification phases ###
-plda_run_negative_alpha_0_0
-plda_run_negative_alpha_0_1
-plda_run_negative_eta_0_0
-plda_run_negative_eta_0_1
-plda_label_negative_alpha_0_0
-plda_label_negative_eta_0_0
-### END ###
-
-
 ###### Naive Bayes Classification ###
 
 ### HEAD ###
@@ -530,10 +459,6 @@ multinomial_logistic_regression_utf8_character_0_2
 ######## PG error message is without source code file name while GP has ########
 non_central_f_quantile_feature_test_df1_0_0
 
-### Stability evaluation UDF is not available ###
-plda_stability_0_0
-plda_stability_0_6
-
 ##### UTF8 is not acceptable in the pulse server #####
 multinomial_logistic_regression_utf8_character_0_1
 multinomial_logistic_regression_utf8_character_0_0
@@ -563,3 +488,12 @@ multinomial_logistic_regression_ctas_0_1
 km_ctas_0_0
 km_pp_ctas_0_0
 km_random_ctas_0_0
+
+### HEAD ###
+### JiraId: MADLIB-788###
+### Des: RF tests fail due to incorrect baseline settings
+### Type: 2 ###
+rf_gini_dataset_0_7
+rf_gainratio_dataset_0_7
+rf_infogain_dataset_0_7 
+
