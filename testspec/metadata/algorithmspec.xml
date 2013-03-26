@@ -1,5 +1,206 @@
 <algorithms>
   <algorithm>
+    <name>elastic_net_regression</name>
+    <method>
+      <name>elastic_net_train</name>
+      <create>true</create>
+      <template>
+        SELECT {madlib_schema}.elastic_net_train(
+        {source_table},             -- source table name
+        {output_table},            -- output table name
+        {dependent_varname},       -- dependent variable name
+        {independent_varname},     -- independent variable name
+        {family},                  -- linear or logistic
+        {alpha},                   -- elastic net hyper-parameter
+        {lambda},                  -- regression parameter
+        {standardize},             -- flag for normalizing the variables
+        {grouping_columns},        -- grouping column names 
+                                   --    (comma delimited string )
+        {optimizer},               -- which optimizer to use
+        {optimizer_parameter},     -- all optimizer parameters in a string 
+        {exclude_cols},                 -- list of columns that should be excluded
+        {number_of_iterations}     -- id column
+        );
+      </template>
+    <input_parameter>
+        <name>source_table</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>output_table</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>dependent_varname</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>independent_varname</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>family</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>alpha</name>
+        <type>DOUBLE PRECISION</type>
+        <quote>false</quote>
+      </input_parameter>
+      <input_parameter>
+        <name>lambda</name>
+        <type>DOUBLE PRECISION</type>
+        <quote>false</quote>
+      </input_parameter>
+      <input_parameter>
+        <name>standardize</name>
+        <type>BOOLEAN</type>
+        <quote>false</quote>
+      </input_parameter>
+      <input_parameter>
+        <name>grouping_columns</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>optimizer</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>optimizer_parameter</name>
+        <type>TEXT</type>
+        <quote>false</quote>
+      </input_parameter>
+      <input_parameter>
+        <name>exclude_cols</name>
+        <type>TEXT</type>
+      </input_parameter>
+      <input_parameter>
+        <name>number_of_iterations</name>
+        <type>INTEGER</type>
+        <quote>false</quote>
+      </input_parameter>
+    </method>
+
+    <method>
+      <name>elastic_net_eval</name>
+      <create>true</create>
+      <template>
+        select madlibtestdata.elastic_net_eval(
+          {source_name},            -- input dataset name
+          {eval_r_table},           -- R result evaluation table
+          {dependent_varname},      -- dependent variable name
+          {independent_varname},    -- independent variable name
+          {alpha},                  -- regularization parameter
+          {lambda_value},           -- regression paramter
+          {standardize}             -- normalize or not          
+        ) as report;
+      </template>
+
+      <input_parameter>
+        <name>source_name</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>eval_r_table</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>dependent_varname</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>independent_varname</name>
+        <type>text</type>
+      </input_parameter>
+    
+      <input_parameter>
+        <name>alpha</name>
+        <type>double precision</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <input_parameter>
+        <name>lambda_value</name>
+        <type>double precision</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <input_parameter>
+        <name>standardize</name>
+        <type>boolean</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <output_parameter>
+        <name>report</name>
+        <type>double precision</type>
+      </output_parameter>
+</method>
+
+    <method>
+      <name>elastic_net_binomial_eval</name>
+      <create>true</create>
+      <template>
+        select madlibtestdata.elastic_net_binomial_eval(
+          {source_name},            -- input dataset name
+          {eval_r_table},           -- R result evaluation table
+          {dependent_varname},      -- dependent variable name
+          {independent_varname},    -- independent variable name
+          {alpha},                  -- regularization parameter
+          {lambda_value},           -- regression paramter
+          {standardize}             -- normalize or not          
+        ) as report;
+      </template>
+
+      <input_parameter>
+        <name>source_name</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>eval_r_table</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>dependent_varname</name>
+        <type>text</type>
+      </input_parameter>
+
+      <input_parameter>
+        <name>independent_varname</name>
+        <type>text</type>
+      </input_parameter>
+    
+      <input_parameter>
+        <name>alpha</name>
+        <type>double precision</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <input_parameter>
+        <name>lambda_value</name>
+        <type>double precision</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <input_parameter>
+        <name>standardize</name>
+        <type>boolean</type>
+        <quote>false</quote>
+      </input_parameter>
+
+      <output_parameter>
+        <name>report</name>
+        <type>double precision</type>
+      </output_parameter>
+</method>
+  </algorithm>
+
+  <algorithm>
     <name>cross_validation</name>
     <method>
       <name>cross_validation_general</name>

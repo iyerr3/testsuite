@@ -1,0 +1,8 @@
+# TestSuite Name : elastic_net_binomial_output_test
+# To compare the output of elastic net regression with R
+# Start TestSuite ==========
+elastic_net_binomial_output_test_0_0
+elastic_net_binomial_output_test_0_1
+elastic_net_binomial_output_test_0_2
+elastic_net_binomial_output_test_0_3
+

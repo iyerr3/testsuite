@@ -296,3 +296,20 @@ set evaluation_function = (
 where itemname in (
     select testitemname from lda_compare_perplexity
 );
+
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from elastic_net_regression_elastic_net_eval as gr
+    where gr.runid = ts.runid and gr.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from elastic_net_regression_elastic_net_eval
+);
+
+update testitemresult as ts
+set evaluation_function = (
+    select report
+    from elastic_net_regression_elastic_net_binomial_eval as gr
+    where gr.runid = ts.runid and gr.testitemname = ts.itemname)
+where itemname in (
+    select testitemname from elastic_net_regression_elastic_net_binomial_eval

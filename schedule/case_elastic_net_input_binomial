@@ -1,0 +1,120 @@
+# TestSuite Name : elastic_net_bi_functionalities
+# It is to test basic functionalities of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_functionalities_0_0
+elastic_net_bi_functionalities_0_1
+elastic_net_bi_functionalities_0_2
+elastic_net_bi_functionalities_0_3
+elastic_net_bi_functionalities_0_4
+
+# TestSuite Name : elastic_net_bi_corner_scenarios
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_corner_scenarios_0_0
+elastic_net_bi_corner_scenarios_0_1
+
+# TestSuite Name : elastic_net_bi_negative_source_table
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_source_table_0_0
+elastic_net_bi_negative_source_table_0_1
+elastic_net_bi_negative_source_table_0_2
+elastic_net_bi_negative_source_table_0_3
+elastic_net_bi_negative_source_table_0_4
+
+# TestSuite Name : elastic_net_bi_negative_output_table
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_output_table_0_0
+elastic_net_bi_negative_output_table_0_1
+
+# TestSuite Name : elastic_net_bi_negative_dependent_varname
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_dependent_varname_0_0
+elastic_net_bi_negative_dependent_varname_0_1
+elastic_net_bi_negative_dependent_varname_0_2
+
+# TestSuite Name : elastic_net_bi_negative_independent_varname
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_independent_varname_0_0
+elastic_net_bi_negative_independent_varname_0_1
+elastic_net_bi_negative_independent_varname_0_2
+
+# TestSuite Name : elastic_net_bi_negative_family
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_family_0_0
+elastic_net_bi_negative_family_0_1
+elastic_net_bi_negative_family_0_2
+elastic_net_bi_negative_family_0_3
+
+# TestSuite Name : elastic_net_bi_negative_alpha
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_alpha_0_0
+elastic_net_bi_negative_alpha_0_1
+elastic_net_bi_negative_alpha_0_2
+elastic_net_bi_negative_alpha_0_3
+
+# TestSuite Name : elastic_net_bi_negative_lambda
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_lambda_0_0
+elastic_net_bi_negative_lambda_0_1
+elastic_net_bi_negative_lambda_0_2
+elastic_net_bi_negative_lambda_0_3
+
+# TestSuite Name : elastic_net_bi_negative_standardize
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_standardize_0_0
+elastic_net_bi_negative_standardize_0_1
+elastic_net_bi_negative_standardize_0_2
+elastic_net_bi_negative_standardize_0_3
+
+# TestSuite Name : elastic_net_bi_negative_grouping_columns
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_grouping_columns_0_0
+elastic_net_bi_negative_grouping_columns_0_1
+elastic_net_bi_negative_grouping_columns_0_2
+elastic_net_bi_negative_grouping_columns_0_3
+elastic_net_bi_negative_grouping_columns_0_4
+
+# TestSuite Name : elastic_net_bi_negative_optimizer
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_optimizer_0_0
+elastic_net_bi_negative_optimizer_0_1
+elastic_net_bi_negative_optimizer_0_2
+elastic_net_bi_negative_optimizer_0_3
+
+# TestSuite Name : elastic_net_bi_negative_optimizer_parameter
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_optimizer_parameter_0_0
+elastic_net_bi_negative_optimizer_parameter_0_1
+elastic_net_bi_negative_optimizer_parameter_0_2
+elastic_net_bi_negative_optimizer_parameter_0_3
+elastic_net_bi_negative_optimizer_parameter_0_4
+
+# TestSuite Name : elastic_net_bi_negative_exclude_cols
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_exclude_cols_0_0
+elastic_net_bi_negative_exclude_cols_0_1
+elastic_net_bi_negative_exclude_cols_0_2
+elastic_net_bi_negative_exclude_cols_0_3
+elastic_net_bi_negative_exclude_cols_0_4
+
+# TestSuite Name : elastic_net_bi_negative_number_of_iterations
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_bi_negative_number_of_iterations_0_0
+elastic_net_bi_negative_number_of_iterations_0_1
+elastic_net_bi_negative_number_of_iterations_0_2
+elastic_net_bi_negative_number_of_iterations_0_3
+elastic_net_bi_negative_number_of_iterations_0_4
+

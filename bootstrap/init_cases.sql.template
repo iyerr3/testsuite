@@ -236,6 +236,41 @@ SELECT runid, ti.algorithmic as suitename, ti.casename,
               END
       END
 
+    WHEN tr.itemname like 'elastic_net' and tr.itemname not like 'elastic_net_output' and tr.itemname not like 'elastic_net_binomial_output' 
+    THEN
+      CASE  WHEN tr.itemname like 'elastic_net_negative%'
+            THEN CASE WHEN NOT tr.issuccessful
+                  THEN CASE WHEN tr.result_info like '%Elastic Net error%'
+                              OR tr.result_info like '%column%does not exist%'
+                            THEN 'PASSED'
+                            ELSE 'FAILED'
+                        END
+                  ELSE 'FAILED'
+                END
+            ELSE
+              CASE WHEN tr.issuccessful
+                   THEN 'PASSED'
+                   ELSE CASE WHEN tr.result_info like '%Elastic Net error%'
+                              OR tr.result_info like '%column%does not exist%'
+                        THEN 'PASSED'
+                        ELSE 'FAILED'
+                        END
+              END
+      END
+	  
+	WHEN tr.itemname like 'elastic_net_output'
+    THEN CASE WHEN tr.issuccessful and tr.evaluation_function = 100
+    THEN 'PASSED'
+    ELSE 'FAILED'
+    END
+
+    WHEN tr.itemname like 'elastic_net_binomial_output'
+    THEN CASE WHEN tr.issuccessful and tr.evaluation_function = 100
+    THEN 'PASSED'
+    ELSE 'FAILED'
+    END
+
+
     WHEN tr.itemname like 'linregr_hetero_output_test%linregr_eval_hetero%'
     THEN CASE WHEN    tr.issuccessful
                 and   tr.evaluation_function = 1

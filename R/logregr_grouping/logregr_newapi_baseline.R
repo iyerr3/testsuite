@@ -42,6 +42,7 @@ eval.logregr.append.results <- function (data.set, # data set name
                                         # R can read without error
                                          )
 {
+    print(sql.path)
     ## copy the original .gz data file, extract it, convert it into R compatible
     ## format, and then read in
     dat <- prepare.dataset(data.set, sql.path = sql.path, data.path = data.path,
@@ -115,7 +116,7 @@ eval.logregr.append.results <- function (data.set, # data set name
             output.vec(odds.ratios, "double precision[]", ",\n", conn)
             output.one(condition.no, "double precision", ");\n\n", conn)
         }
-        ##
+        ## 
         close(conn)
     }
 }

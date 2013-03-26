@@ -98,6 +98,7 @@ def main():
                         psqlArgs = psql_args, isFile = True)
         run_sql.runSQL(Path.BootstrapDir + 'resultbaseline.sql',
                         psqlArgs = psql_args, isFile = True)
+
     if options.gencase:
         print "------------ Generating new test cases ------------"
         if options.debug:
@@ -112,7 +113,6 @@ def main():
         for sqlfile in glob.glob('../testcase/*.sql'):
             run_sql.runSQL(sqlfile, psqlArgs = psql_args,
                         onErrorStop = False, isFile = True)
-
 
     if options.smartload:
         loading_manager = loadingManager(Path.RootPath, 'madlibtestdata', analyticsTools)

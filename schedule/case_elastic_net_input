@@ -1,0 +1,147 @@
+# TestSuite Name : elastic_net_functionalities
+# It is to test basic functionalities of elastic net regression.
+# Start TestSuite ==========
+elastic_net_functionalities_0_0
+elastic_net_functionalities_0_1
+elastic_net_functionalities_0_2
+elastic_net_functionalities_0_3
+elastic_net_functionalities_0_4
+elastic_net_functionalities_0_5
+elastic_net_functionalities_0_6
+elastic_net_functionalities_0_7
+elastic_net_functionalities_0_8
+elastic_net_functionalities_0_9
+elastic_net_functionalities_0_10
+elastic_net_functionalities_0_11
+elastic_net_functionalities_0_12
+elastic_net_functionalities_0_13
+elastic_net_functionalities_0_14
+elastic_net_functionalities_0_15
+elastic_net_functionalities_0_16
+elastic_net_functionalities_0_17
+elastic_net_functionalities_0_18
+elastic_net_functionalities_0_19
+elastic_net_functionalities_0_20
+elastic_net_functionalities_0_21
+elastic_net_functionalities_0_22
+elastic_net_functionalities_0_23
+elastic_net_functionalities_0_24
+elastic_net_functionalities_0_25
+elastic_net_functionalities_0_26
+elastic_net_functionalities_0_27
+elastic_net_functionalities_0_28
+elastic_net_functionalities_0_29
+elastic_net_functionalities_0_30
+elastic_net_functionalities_0_31
+
+# TestSuite Name : elastic_net_corner_scenarios
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_corner_scenarios_0_0
+elastic_net_corner_scenarios_0_1
+
+# TestSuite Name : elastic_net_negative_source_table
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_source_table_0_0
+elastic_net_negative_source_table_0_1
+elastic_net_negative_source_table_0_2
+elastic_net_negative_source_table_0_3
+elastic_net_negative_source_table_0_4
+
+# TestSuite Name : elastic_net_negative_output_table
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_output_table_0_0
+elastic_net_negative_output_table_0_1
+
+# TestSuite Name : elastic_net_negative_dependent_varname
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_dependent_varname_0_0
+elastic_net_negative_dependent_varname_0_1
+elastic_net_negative_dependent_varname_0_2
+
+# TestSuite Name : elastic_net_negative_independent_varname
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_independent_varname_0_0
+elastic_net_negative_independent_varname_0_1
+elastic_net_negative_independent_varname_0_2
+
+# TestSuite Name : elastic_net_negative_family
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_family_0_0
+elastic_net_negative_family_0_1
+elastic_net_negative_family_0_2
+elastic_net_negative_family_0_3
+
+# TestSuite Name : elastic_net_negative_alpha
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_alpha_0_0
+elastic_net_negative_alpha_0_1
+elastic_net_negative_alpha_0_2
+elastic_net_negative_alpha_0_3
+
+# TestSuite Name : elastic_net_negative_lambda
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_lambda_0_0
+elastic_net_negative_lambda_0_1
+elastic_net_negative_lambda_0_2
+elastic_net_negative_lambda_0_3
+
+# TestSuite Name : elastic_net_negative_standardize
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_standardize_0_0
+elastic_net_negative_standardize_0_1
+elastic_net_negative_standardize_0_2
+elastic_net_negative_standardize_0_3
+
+# TestSuite Name : elastic_net_negative_grouping_columns
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_grouping_columns_0_0
+elastic_net_negative_grouping_columns_0_1
+elastic_net_negative_grouping_columns_0_2
+elastic_net_negative_grouping_columns_0_3
+elastic_net_negative_grouping_columns_0_4
+
+# TestSuite Name : elastic_net_negative_optimizer
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_optimizer_0_0
+elastic_net_negative_optimizer_0_1
+elastic_net_negative_optimizer_0_2
+elastic_net_negative_optimizer_0_3
+
+# TestSuite Name : elastic_net_negative_optimizer_parameter
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_optimizer_parameter_0_0
+elastic_net_negative_optimizer_parameter_0_1
+elastic_net_negative_optimizer_parameter_0_2
+elastic_net_negative_optimizer_parameter_0_3
+elastic_net_negative_optimizer_parameter_0_4
+
+# TestSuite Name : elastic_net_negative_exclude_cols
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_exclude_cols_0_0
+elastic_net_negative_exclude_cols_0_1
+elastic_net_negative_exclude_cols_0_2
+elastic_net_negative_exclude_cols_0_3
+elastic_net_negative_exclude_cols_0_4
+
+# TestSuite Name : elastic_net_negative_number_of_iterations
+# It is to test the corner scenarios of elastic net regression.
+# Start TestSuite ==========
+elastic_net_negative_number_of_iterations_0_0
+elastic_net_negative_number_of_iterations_0_1
+elastic_net_negative_number_of_iterations_0_2
+elastic_net_negative_number_of_iterations_0_3
+elastic_net_negative_number_of_iterations_0_4
+

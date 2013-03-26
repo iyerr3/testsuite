@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>elastic_net_regression</algorithm>
+
+    <methods>
+      <method>
+        <name>elastic_net_eval</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>elastic_net_output_test</name>
+      <comments>
+        To compare the output of elastic net regression with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>elastic_net_eval</name>
+
+        <list_parameter>
+          <name>source_name</name>
+                <value>lin_auto_mpg_wi</value>
+                <value>lin_auto_mpg_wi</value>
+                <value>lin_forestfires_wi</value>
+                <value>lin_housing_wi</value>
+                <value>lin_imports_85_wi</value>
+                <value>lin_machine_wi</value>
+                <value>lin_parkinsons_updrs_wi</value>
+                <value>lin_servo_wi</value>
+                <value>lin_slump_wi</value>
+                <value>lin_winequality_red_wi</value>
+                <value>lin_winequality_white_wi</value>
+                <value>lin_ornstein_wi</value>
+                <value>lin_auto_mpg_oi</value>
+                <value>lin_auto_mpg_oi</value>
+                <value>lin_forestfires_oi</value>
+                <value>lin_housing_oi</value>
+                <value>lin_imports_85_oi</value>
+                <value>lin_machine_oi</value>
+                <value>lin_parkinsons_updrs_oi</value>
+                <value>lin_servo_oi</value>
+                <value>lin_slump_oi</value>
+                <value>lin_winequality_red_oi</value>
+                <value>lin_winequality_white_oi</value>
+                <value>lin_ornstein_oi</value>
+        </list_parameter>
+        
+        <parameter>
+          <name>dependent_varname</name>
+          <value>y</value>
+        </parameter>
+
+        <parameter>
+          <name>independent_varname</name>
+          <value>x</value>
+        </parameter>
+        
+        <parameter>
+          <name>alpha</name>
+          <value>0.5</value>
+        </parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.5</value>
+        </parameter>
+
+        <parameter>
+          <name>standardize</name>
+          <value>true</value>
+        </parameter>
+
+        <parameter>
+          <name>eval_r_table</name>
+          <value>evaluation_en_train</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>

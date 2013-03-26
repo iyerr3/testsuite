@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+  <test_type>feature</test_type>
+  <multi_test_suites>
+
+    <algorithm>elastic_net_regression</algorithm>
+
+    <methods>
+      <method>
+        <name>elastic_net_binomial_eval</name>
+        <parameter>
+          <name>benchmark</name>
+          <value>TemplateExecutor</value>
+        </parameter>
+      </method>
+    </methods>
+
+    <test_suite>
+      <name>elastic_net_binomial_output_test</name>
+      <comments>
+        To compare the output of elastic net regression with R
+      </comments>
+      <execute_rate>1</execute_rate>
+
+      <method>
+        <name>elastic_net_binomial_eval</name>
+
+        <list_parameter>
+          <name>source_name</name>
+          <value>log_breast_cancer_wisconsin</value>
+          <value>log_ticdata2000</value>
+          <value>log_wpbc</value>
+          <value>log_wdbc</value>
+        </list_parameter>
+        
+        <parameter>
+          <name>dependent_varname</name>
+          <value>y</value>
+        </parameter>
+
+        <parameter>
+          <name>independent_varname</name>
+          <value>x</value>
+        </parameter>
+        
+        <parameter>
+          <name>alpha</name>
+          <value>0.5</value>
+        </parameter>
+
+        <parameter>
+          <name>lambda_value</name>
+          <value>0.5</value>
+        </parameter>
+
+        <parameter>
+          <name>standardize</name>
+          <value>true</value>
+        </parameter>
+
+        <parameter>
+          <name>eval_r_table</name>
+          <value>evaluation_en_binomial_train</value>
+        </parameter>
+      </method>
+    </test_suite>
+  </multi_test_suites>
+</test_suites>

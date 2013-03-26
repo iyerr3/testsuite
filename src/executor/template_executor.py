@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """This file is to parse algorithmspec.xml.
 
-There are multiply method for one algorithm.For each method, the template is the
+There are multiply method for one algorithm. For each method, the template is the
 invoking sql of madlib. The input parameters is specified in test case spec,
 and the output parameters are captured from the output of invoking sql. Both
 the input and output parameters willbe stored in result database.
@@ -134,7 +134,8 @@ class MethodTemplate(Parser):
         new_map = {}
         for name, value in name_value_map.items():
             # name_value_map may include other environments
-            if value == 'NINFINITY': value = '-INFINITY'
+            if value == 'NINFINITY': 
+                value = '-INFINITY'
 
             if self.para_map.has_key(name):
                 para = self.para_map[name]
@@ -147,10 +148,8 @@ class MethodTemplate(Parser):
         """return the sql statement to create the algorithm result table,
         which will be stored after successfully invocation
 
-
-
-        param algorithm: algorithm name
-        return sql statement
+            @param algorithm: algorithm name
+            @return sql statement
         """
         if self.create :
             #drop_table = "DROP TABLE IF EXISTS " + self.db_schema + \
@@ -201,7 +200,6 @@ class InputParameter(Parser):
     def getDefaultValue(self):
         return self.default
 
-
     """
     @brief return the value of this parameter.
     @param value: text value
@@ -221,6 +219,9 @@ class InputParameter(Parser):
             if any(self.type.lower() == i for i in
                         ['text', 'varchar', 'character varying']):
                 return value + "::text"
+            elif any(self.type.replace(' ', '').lower() == i for i in 
+                        ['text[]', 'varchar[]']):
+                return value + "::text[]"
             else:
                 return value
 
@@ -232,7 +233,8 @@ class InputParameter(Parser):
         #does the invoke need quote and does the value support quote itself?
         if disable_quote and not self.quote:
             return value
-        if self.type == 'text' and value == 'EMPTY':
+        if self.type in ("text", "varchar", "character varying") and \
+                    str(value).upper().startswith('EMPTY'):
             return "''" #empty string
         else:
             # return "'%s'::%s" % (value, self.type)
