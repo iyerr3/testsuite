@@ -119,3 +119,8 @@ case_weibull_quantile
 
 # case_ridge_regression
 # case_elastic_null_values
+
+case_elastic_net_output
+case_elastic_net_input
+case_elastic_net_input_binomial
+case_elastic_net_output_binomial
