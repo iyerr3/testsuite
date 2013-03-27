@@ -313,3 +313,4 @@ set evaluation_function = (
     where gr.runid = ts.runid and gr.testitemname = ts.itemname)
 where itemname in (
     select testitemname from elastic_net_regression_elastic_net_binomial_eval
+);
