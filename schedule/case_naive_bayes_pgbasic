@@ -1,8 +1,8 @@
 # TestSuite Name : nb_argmax
 # It is to verify argmax with different datasets
 # Start TestSuite ==========
-nb_argmax_0_1
-nb_argmax_0_3
+#nb_argmax_0_1
+#nb_argmax_0_3
 
 # TestSuite Name : nb_precompute_views
 # It is to verify precomputed class priors and feature probabilities using views as storage
