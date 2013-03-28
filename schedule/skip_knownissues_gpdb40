@@ -579,6 +579,7 @@ km_random_noninfinite_0_1
 rf_gini_dataset_0_7
 rf_gainratio_dataset_0_7
 rf_infogain_dataset_0_7 
+### END ###
 
 ### HEAD ###
 ### General CV logistic tests randomly fail on pulse ###
@@ -592,4 +593,5 @@ generalcv_logregr_output_test_0_4
 generalcv_logregr_output_test_0_5
 generalcv_logregr_output_test_0_6
 generalcv_logregr_output_test_0_7
+### END ###
 

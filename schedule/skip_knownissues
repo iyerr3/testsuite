@@ -488,6 +488,7 @@ multinomial_logistic_regression_ctas_0_1
 km_ctas_0_0
 km_pp_ctas_0_0
 km_random_ctas_0_0
+### END ###
 
 ### HEAD ###
 ### JiraId: MADLIB-788###
@@ -496,5 +497,6 @@ km_random_ctas_0_0
 rf_gini_dataset_0_7
 rf_gainratio_dataset_0_7
 rf_infogain_dataset_0_7 
+### END ###
 
 
