@@ -178,6 +178,10 @@ nb_adhoc_views_8_0_0
 nb_adhoc_function_0_8
 nb_precompute_function_workaround_0_8
 nb_adhoc_function_workaround_0_8
+nb_argmax_0_0
+nb_argmax_0_1
+nb_argmax_0_2
+nb_argmax_0_3
 ### END ###
 
 ### HEAD ###
@@ -498,5 +502,4 @@ rf_gini_dataset_0_7
 rf_gainratio_dataset_0_7
 rf_infogain_dataset_0_7 
 ### END ###
-
 

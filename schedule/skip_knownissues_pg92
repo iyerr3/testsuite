@@ -188,7 +188,10 @@ nb_precompute_function_workaround_0_0
 nb_precompute_function_workaround_0_4
 nb_adhoc_function_workaround_0_0
 nb_adhoc_views_0_0_0 
-
+nb_argmax_0_0
+nb_argmax_0_1
+nb_argmax_0_2
+nb_argmax_0_3
 ### END ###
 
 ### HEAD ###
@@ -547,6 +550,7 @@ km_pp_svec_0_0
 km_random_svec_0_0
 ### END ###
 
+### HEAD ###
 ###### MADmark improvement needed: kmeans non-finite test should be successfull #####
 km_nonfinite_2water_treatment_noninfinite_0_0
 km_pp_noninfinite_0_1
