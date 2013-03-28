@@ -223,7 +223,7 @@ class InputParameter(Parser):
                         ['text[]', 'varchar[]']):
                 return value + "::text[]"
             else:
-                return value
+                return value + "::" + self.type.strip()
 
         if re.search(r"ARRAY\[.*\]", value.upper()):
             value = re.sub('(?i)'+re.escape('NAN'), "'NAN'::double precision", value)
