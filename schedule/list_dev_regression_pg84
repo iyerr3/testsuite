@@ -129,3 +129,9 @@ case_rf_pgdev
 
 # case_ridge_regression
 # case_elastic_null_values
+
+case_lda_corner
+case_lda_feature
+case_lda_perplexity
+
+case_summary

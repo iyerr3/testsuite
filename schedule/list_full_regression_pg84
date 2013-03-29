@@ -1,4 +1,4 @@
-fcase_kmeans_rewrite_full_pg
+case_kmeans_rewrite_full_pg
 
 case_common
 case_multinomial_logistic_regression_pg_full
@@ -111,3 +111,9 @@ case_generic_cv_input
 
 # case_ridge_regression
 # case_elastic_null_values
+case_lda_corner
+case_lda_feature
+case_lda_perplexity
+
+
+case_summary
