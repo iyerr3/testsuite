@@ -216,11 +216,11 @@ class InputParameter(Parser):
         """
         #NULL value for any type
         if str(value).upper() == 'NULL':
-            if any(self.type.lower() == i for i in
-                        ['text', 'varchar', 'character varying']):
+            if (self.type.strip().lower() in 
+                        ('text', 'varchar', 'character varying')):
                 return value + "::text"
-            elif any(self.type.replace(' ', '').lower() == i for i in 
-                        ['text[]', 'varchar[]']):
+            elif (self.type.replace(' ', '').lower() in 
+                        ('text[]', 'varchar[]')):
                 return value + "::text[]"
             else:
                 return value + "::" + self.type.strip()
@@ -233,9 +233,9 @@ class InputParameter(Parser):
         #does the invoke need quote and does the value support quote itself?
         if disable_quote and not self.quote:
             return value
-        if self.type in ("text", "varchar", "character varying") and \
-                    str(value).upper().startswith('EMPTY'):
-            return "''" #empty string
+        if self.type.lower() in ("text", "varchar", "character varying") and \
+                    value.lower() == 'empty':
+            return "''::text" #empty string
         else:
             # return "'%s'::%s" % (value, self.type)
             #value = value.replace("ARRAY[","{")
