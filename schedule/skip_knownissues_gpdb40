@@ -559,14 +559,10 @@ logistic_regression_ctas_0_1
 multinomial_logistic_regression_ctas_0_0
 multinomial_logistic_regression_ctas_0_1
 
-
 km_ctas_0_0
 km_pp_ctas_0_0
 km_random_ctas_0_0
-### END ###
 
-### HEAD ###
-###### MADmark improvement needed: kmeans non-finite test should be successfull #####
 km_nonfinite_2water_treatment_noninfinite_0_0
 km_pp_noninfinite_0_1
 km_random_noninfinite_0_1
@@ -582,9 +578,7 @@ rf_infogain_dataset_0_7
 ### END ###
 
 ### HEAD ###
-### General CV logistic tests randomly fail on pulse ###
-### for GPDB41 and GPDB40 ###
-### But cannot be repeated on laptops ###
+### JiraId: MADLIB-727 ###
 generalcv_logregr_output_test_0_0
 generalcv_logregr_output_test_0_1
 generalcv_logregr_output_test_0_2

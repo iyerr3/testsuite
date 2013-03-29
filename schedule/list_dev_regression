@@ -124,3 +124,7 @@ case_elastic_net_output
 case_elastic_net_input
 case_elastic_net_input_binomial
 case_elastic_net_output_binomial
+
+case_lda_corner
+case_lda_feature
+case_lda_perplexity
