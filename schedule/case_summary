@@ -1,0 +1,77 @@
+# TestSuite Name : summary_functionality
+# Test the functionality of summary over different datasets.
+# Start TestSuite ==========
+summary_functionality_0_0
+summary_functionality_0_1
+summary_functionality_0_2
+summary_functionality_0_3
+summary_functionality_0_4
+summary_functionality_0_5
+summary_functionality_0_6
+summary_functionality_0_7
+summary_functionality_0_8
+summary_functionality_0_9
+summary_functionality_0_10
+summary_functionality_0_11
+summary_functionality_0_12
+summary_functionality_0_13
+summary_functionality_0_14
+summary_functionality_0_15
+summary_functionality_0_16
+summary_functionality_0_17
+summary_functionality_0_18
+summary_functionality_0_19
+summary_functionality_0_20
+summary_functionality_0_21
+summary_functionality_0_22
+summary_functionality_0_23
+summary_functionality_0_24
+summary_functionality_0_25
+summary_functionality_0_26
+summary_functionality_0_27
+summary_functionality_0_28
+summary_functionality_0_29
+summary_functionality_0_30
+summary_functionality_0_31
+
+# TestSuite Name : summary_negative_source_table
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_source_table_0_0
+summary_negative_source_table_0_1
+summary_negative_source_table_0_2
+
+# TestSuite Name : summary_negative_output_table
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_output_table_0_0
+summary_negative_output_table_0_1
+
+# TestSuite Name : summary_negative_target_cols
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_target_cols_0_0
+summary_negative_target_cols_0_1
+summary_negative_target_cols_0_2
+
+# TestSuite Name : summary_negative_grouping_col
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_grouping_col_0_0
+summary_negative_grouping_col_0_1
+summary_negative_grouping_col_0_2
+
+# TestSuite Name : summary_negative_ntile
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_ntile_0_0
+summary_negative_ntile_0_1
+summary_negative_ntile_0_2
+
+# TestSuite Name : summary_negative_mfv
+# Corner condtion tests
+# Start TestSuite ==========
+summary_negative_mfv_0_0
+summary_negative_mfv_0_1
+summary_negative_mfv_0_2
+

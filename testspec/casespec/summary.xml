@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<test_suites>
+    <test_type>feature</test_type>
+    <multi_test_suites>
+        <algorithm>summary</algorithm>
+        <methods>
+            <method>
+                <name>summary</name>
+                <parameter>
+                    <name>benchmark</name>
+                    <value>TemplateExecutor</value>
+                </parameter>
+            </method>
+        </methods>
+        <test_suite>
+	        <name>summary_functionality</name>
+            <comments>
+                Test the functionality of summary over different datasets.
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+                <list_parameter>
+                    <name>source_table</name>
+                    <value>madlibtestdata.dt_golf</value>
+                    <value>madlibtestdata.dt_kddcup</value>
+                </list_parameter>
+	            <parameters>
+                    <parameter>
+		                <name>output_table</name>
+		                <value>madlibtestresult.summary_output</value>
+                    </parameter>
+                    <list_parameter>
+                        <name>target_cols</name>
+                        <value>NULL</value>
+                    </list_parameter>
+                    <list_parameter>
+                        <name>grouping_cols</name>
+                        <value>NULL</value>
+                    </list_parameter>
+                    <list_parameter>
+                        <name>ntile_array</name>
+                        <value>NULL</value>
+                        <value>array[0.1, 0.2, 0.3]</value>
+                    </list_parameter>
+                    <list_parameter>
+                        <name>get_distinct</name>
+                        <value>True</value>
+                        <value>False</value>
+                    </list_parameter>
+                    <list_parameter>
+                        <name>get_quartiles</name>
+                        <value>True</value>
+                        <value>False</value>
+                    </list_parameter>
+                    <list_parameter>
+                        <name>get_estimates</name>
+                        <value>True</value>
+                        <value>False</value>
+                    </list_parameter>
+    	        </parameters>
+	    	    <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+	        </method>
+        </test_suite>
+        <test_suite>
+	        <name>summary_negative_source_table</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+                <list_parameter>
+                    <name>source_table</name>
+                    <value>NULL</value>
+                    <value>EMPTY</value>
+                    <value>madlibtestdata.summary_empty_table</value>
+                </list_parameter>
+	            <parameters>
+                     <parameter>
+                        <name>output_table</name>
+                        <value>madlibtestresult.summary_output</value>
+                    </parameter>
+    	        </parameters>
+	    	    <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+	        </method>
+        </test_suite>
+
+        <test_suite>
+	        <name>summary_negative_output_table</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+	            <parameters>
+                    <parameter>
+		                <name>source_table</name>
+		                <value>madlibtestdata.dt_golf</value>
+                    </parameter>
+                    <list_parameter>
+                        <name>output_table</name>
+                        <value>NULL</value>
+                        <value>-1</value>
+                        <!-- <value>EMPTY</value> -->
+                    </list_parameter>
+    	        </parameters>
+	    	    <tear_down>
+                </tear_down>
+	        </method>
+        </test_suite>
+        <test_suite>
+	        <name>summary_negative_target_cols</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+	            <parameters>
+                    <parameter>
+		                <name>source_table</name>
+		                <value>madlibtestdata.dt_golf</value>
+                    </parameter>
+                    <parameter>
+                        <name>output_table</name>
+                        <value>madlibtestresult.summary_output</value>
+                    </parameter>
+                    <list_parameter>
+		                <name>target_cols</name>
+		                <value>non_existing_col</value>
+                        <value>-1</value>
+                        <value>temperature, non_existing_col</value>
+                    </list_parameter>
+    	        </parameters>
+	    	    <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+	        </method>
+        </test_suite>
+        <test_suite>
+	        <name>summary_negative_grouping_col</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+	            <parameters>
+                    <parameter>
+		                <name>source_table</name>
+		                <value>madlibtestdata.dt_golf</value>
+                    </parameter>
+                    <parameter>
+                        <name>output_table</name>
+                        <value>madlibtestresult.summary_output</value>
+                    </parameter>
+                    <list_parameter>
+		                <name>grouping_cols</name>
+		                <value>non_existing_col</value>
+                        <value>-1</value>
+                        <value>temperature, non_existing_col</value>
+                    </list_parameter>
+    	        </parameters>
+	    	    <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+	        </method>
+        </test_suite>
+        <test_suite>
+            <name>summary_negative_ntile</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+                <parameters>
+                    <parameter>
+                        <name>source_table</name>
+                        <value>madlibtestdata.dt_golf</value>
+                    </parameter>
+                    <parameter>
+                        <name>output_table</name>
+                        <value>madlibtestresult.summary_output</value>
+                    </parameter>
+                    <list_parameter>
+                        <name>ntile_array</name>
+                        <value>{-1, 0.1, 1.0}</value>
+                        <value>{}</value>
+                        <value>{-10}</value>
+                    </list_parameter>
+                </parameters>
+                <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+            </method>
+        </test_suite>
+        <test_suite>
+            <name>summary_negative_mfv</name>
+            <comments>
+                Corner condtion tests
+            </comments>
+            <execute_rate>1</execute_rate>
+            <method>
+                <name>summary</name>
+                <parameters>
+                    <parameter>
+                        <name>source_table</name>
+                        <value>madlibtestdata.dt_golf</value>
+                    </parameter>
+                    <parameter>
+                        <name>output_table</name>
+                        <value>madlibtestresult.summary_output</value>
+                    </parameter>
+                    <list_parameter>
+                        <name>how_many_mfv</name>
+                        <value>NULL</value>
+                        <value>0</value>
+                        <value>-10</value>
+                    </list_parameter>
+                </parameters>
+                <tear_down>
+                    DROP TABLE IF EXISTS madlibtestresult.summary_output
+                </tear_down>
+            </method>
+        </test_suite>
+    </multi_test_suites>
+</test_suites>
