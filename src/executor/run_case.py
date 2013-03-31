@@ -77,9 +77,9 @@ def __skipCases(cases, skipfilename, testConfiger):
                 run_cases.append(case)
     except IOError:
         sys.exit('ERROR: Skip file open failed.')
-    except Exception,exp:
+    except Exception, exp:
         print exp
-        sys.exit ('Error when parsing skip_files')
+        sys.exit ('Error when parsing skip_files: ' + exp)
 
     return (run_cases, skippedcases)
 

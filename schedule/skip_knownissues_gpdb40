@@ -3,8 +3,8 @@
 #    Every jira should conform with below format: 
 #    Get rid of the double quotes when using this demo
 #    ## "HEAD" ###
-#    ## JiraId: XXX ###     (Note: must)
-#    ## Type    : 0 ###       (Note: optonal The value should be 0(fix version is current release and need to run), 
+#    ## JiraId: XXX ###         (Note: must)
+#    ## Type    : 0 ###         (Note: optonal The value should be 0(fix version is current release and need to run), 
 #                                                            1(fix version is current release and no need to run),
 #                                                            2(fix version is master) 
 #    ## Des     : XXXX   ###   (Note: optional) 
@@ -339,13 +339,11 @@ svm_cls_gaussian_ds_0_4
 svm_cls_polynomial_ds_0_8
 svm_cls_polynomial_ds_0_12
 
-##############################--data set loader issue ##########################madlibtestdata.svm_epsilon
 svm_cls_polynomial_ds_0_2
 svm_cls_gaussian_ds_para_0_2
 svm_cls_linear_ds_0_10
 svm_cls_dot_ds_0_2
 svm_cls_linear_ds_0_2
-#######################madlibtestdata.svm_rcv1_binary
 svm_cls_linear_ds_0_1
 svm_cls_linear_ds_0_9
 
@@ -530,18 +528,20 @@ svm_reg_polynomial_ds_0_4
 svm_reg_polynomial_ds_0_18
 svm_reg_gaussian_ds_0_4
 svm_reg_gaussian_ds_para_0_4
+### END ###
 
-###### Long running kmeans with user-defined aggreate centroid function ######
+### HEAD ###
+### JiraId: MPP-12635###
+# Long running kmeans with user-defined aggreate centroid function #
 km_aggcentroid_userdefined_0_0
 km_pp_aggcentroid_userdefined_0_0
 km_random_aggcentroid_userdefined_0_0
-
-###### MADmark improvement needed: cannot load dataset with sparse vector are present ######
+# MADmark improvement needed: cannot load dataset with sparse vector are present #
 km_svec_0_0
 km_pp_svec_0_0
 km_random_svec_0_0
 
-###### plpythonu on GPDB4.1/4.0 is old version and uses old fashion of parameter handling ######
+# plpythonu on GPDB4.1/4.0 is old version and uses old fashion of parameter handling #
 km_pp_seeding_fndist_0_4
 km_fndist_4distuserdefined_0_0
 km_pp_fndist_4distuserdefined_0_0

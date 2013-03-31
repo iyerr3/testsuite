@@ -45,8 +45,9 @@ class ReadSkipfiles:
                         if line.startswith('#'):
                             if line.strip('# \n').upper().startswith("JIRAID:"):
                                 if jiraId != "":
-                                    print '\n File: "%s",\n Redundant JiraId in line  %s\n'%(skipfile,lines_count)
-                                    sys.exit()
+                                    out_message = '\n File: "%s",\n Redundant JiraId in line  %s\n'%(skipfile,lines_count)
+                                    print out_message
+                                    sys.exit(out_message)
                                 else:
                                     jiraId = line.strip('# \n')[len("JIRAID:"):].strip()
                             elif line.strip('# \n').upper().startswith("TYPE:"):
@@ -54,11 +55,13 @@ class ReadSkipfiles:
                             elif line.strip('# \n').upper().startswith("DES:"):
                                 jiraDes = line.strip('# \n')[len("DES:"):].strip()
                             elif line.strip('# \n').upper().startswith("HEAD:"):
-                                print '\n File: "%s",\n Expected a END tag in line  %s\n'%(skipfile,lines_count)
-                                sys.exit()
+                                out_message = '\n File: "%s",\n Expected a END tag in line  %s\n'%(skipfile,lines_count)
+                                print out_message
+                                sys.exit(out_message)
                         elif jiraId == "":
-                            print '\n File: "%s",\n Expected a JiraId in line  %s\n'%(skipfile,lines_count)
-                            sys.exit()
+                            out_message = '\n File: "%s",\n Expected a JiraId in line  %s\n'%(skipfile,lines_count)
+                            print out_message
+                            sys.exit(out_message)
                         elif line.strip('# \n') != "":
                             if int(jiraType) != 0:
                                 self.noRunCaselist.append( (line.strip('# \n') ) )
