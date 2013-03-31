@@ -63,7 +63,7 @@ class ReadSkipfiles:
                             print out_message
                             sys.exit(out_message)
                         elif line.strip('# \n') != "":
-                            if int(jiraType) != 0:
+                            if jiraType != "" and int(jiraType) != 0:
                                 self.noRunCaselist.append( (line.strip('# \n') ) )
                             self.mapping_list.append( (jiraId,line.strip('# \n') ) )
                         line = fp.readline();lines_count = lines_count + 1
