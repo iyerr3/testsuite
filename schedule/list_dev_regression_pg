@@ -134,7 +134,7 @@ case_rf_pgdev
 # case_elastic_null_values
 
 case_lda_corner
-case_lda_feature
+case_lda_feature_dev
 case_lda_perplexity
 
-case_summary
+case_summary_dev
