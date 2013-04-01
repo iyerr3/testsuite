@@ -1,3 +1,9 @@
+case_lda_corner
+case_lda_feature_dev
+case_lda_perplexity
+
+case_summary_dev
+
 case_generalcv_linregr
 case_generalcv_logregr
 case_generic_cv_input
@@ -124,9 +130,3 @@ case_elastic_net_output
 case_elastic_net_input
 case_elastic_net_input_binomial
 case_elastic_net_output_binomial
-
-case_lda_corner
-case_lda_feature_dev
-case_lda_perplexity
-
-case_summary_dev

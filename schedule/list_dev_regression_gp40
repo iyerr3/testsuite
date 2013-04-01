@@ -1,3 +1,9 @@
+case_lda_corner
+case_lda_feature_dev
+case_lda_perplexity
+
+case_summary_dev
+
 case_kmeans_rewrite_dev_gp
 
 case_common
@@ -111,8 +117,3 @@ case_generic_cv_input
 # case_ridge_regression
 # case_elastic_null_values
 
-case_lda_corner
-case_lda_feature_dev
-case_lda_perplexity
-
-case_summary_dev
