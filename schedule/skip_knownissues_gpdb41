@@ -520,6 +520,7 @@ km_random_noninfinite_0_1
 
 ### HEAD ###
 ### JiraId: MADLIB-788 ###
+### Type: 1000 ###
 rf_gini_dataset_0_7
 rf_gainratio_dataset_0_7
 rf_infogain_dataset_0_7 
@@ -527,6 +528,7 @@ rf_infogain_dataset_0_7
 
 ### HEAD ###
 ### JiraId: MADLIB-727 ###
+### Type: 1000 ###
 generalcv_logregr_output_test_0_0
 generalcv_logregr_output_test_0_1
 generalcv_logregr_output_test_0_2

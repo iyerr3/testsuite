@@ -532,6 +532,7 @@ svm_reg_gaussian_ds_para_0_4
 
 ### HEAD ###
 ### JiraId: MPP-12635###
+### Type: 1000 ###
 # Long running kmeans with user-defined aggreate centroid function #
 km_aggcentroid_userdefined_0_0
 km_pp_aggcentroid_userdefined_0_0
@@ -579,6 +580,7 @@ rf_infogain_dataset_0_7
 
 ### HEAD ###
 ### JiraId: MADLIB-727 ###
+### Type: 1000 ###
 generalcv_logregr_output_test_0_0
 generalcv_logregr_output_test_0_1
 generalcv_logregr_output_test_0_2
