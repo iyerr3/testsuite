@@ -6,6 +6,16 @@ logistic_regression_baseline_0_1
 logistic_regression_baseline_0_2
 logistic_regression_baseline_0_3
 
+# TestSuite Name : logistic_regression_grouping_ornstein
+# Comparing baseline results for grouping
+# Start TestSuite ==========
+logistic_regression_grouping_ornstein_0_0
+
+# TestSuite Name : logistic_regression_grouping_census
+# Comparing baseline results for grouping
+# Start TestSuite ==========
+logistic_regression_grouping_census_0_0
+
 # TestSuite Name : logistic_regression_negative_source_table
 # It is to test negative scenarios of logistic regression.
 # Start TestSuite ==========

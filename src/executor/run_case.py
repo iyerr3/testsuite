@@ -53,7 +53,7 @@ def __distinctingCases(cases):
 
 def __skipCases(cases, skipfilename, testConfiger):
     """Skip cases and return remainning cases.
-    
+
     @param cases: cases to be skipped.
     @param skipfilename:skip file name.
     """
@@ -81,7 +81,7 @@ def __skipCases(cases, skipfilename, testConfiger):
         print exp
         sys.exit ('Error when parsing skip_files: ' + str(exp))
 
-    return (run_cases, skippedcases)
+    return (run_cases, skippedcases) 
 
 def __parserCasesFromFile(getfile, skipfile, isList, isUnique, testConfiger):
     """Parse cases and return them.
@@ -108,11 +108,11 @@ def runCases(getfile, skipfile, isList, isUnique, platform, analyticsTool, testC
 
     if not platform in analyticsTool.analyticsTools:
         sys.exit('ERROR: Wrong platform name.')
-    testdbconf = analyticsTool.analyticsTools[platform] 
+    testdbconf = analyticsTool.analyticsTools[platform]
     executor = execute_case.TestCaseExecutor(cases, testdbconf, platform)
 
     executor.executeCase(Path.TestCaseDir, run_id)
-    
+
     if skipfile:
         for case in skippedcases:
                 f = open( Path.TestCaseDir +case+'.case')
@@ -130,9 +130,9 @@ def runCases(getfile, skipfile, isList, isUnique, platform, analyticsTool, testC
                     pos = line.find('-c')
                     cmd = line[pos + 3:].strip()
                     sql = """insert into %s.testitemresult
-                        values( '%s', %s, %s, '%s',
-                        '%s', %s, %s, '%s', '%s', %s::bool);
-                        """ % (testConfiger.getResultSchema(), target_base_name, run_id, \
+                            values( '%s', %s, %s, '%s',
+                            '%s', %s, %s, '%s', '%s', %s::bool);
+                           """ % (testConfiger.getResultSchema(), target_base_name, run_id, \
                             0, 'table', platform, 0,
                             'NULL', 'NULL', cmd, False)
 
@@ -140,3 +140,4 @@ def runCases(getfile, skipfile, isList, isUnique, platform, analyticsTool, testC
 
     return executor.version
 
+ 

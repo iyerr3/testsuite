@@ -98,7 +98,7 @@ prepare.dataset <- function(dataset, sql.path = "../../dataset/sql/",
     w2 <-  system(paste("ls -ld ", data.path, sep = ""),
                   ignore.stdout = TRUE, ignore.stderr = TRUE)
     if (w1 != 0)  # 0 is the success return code
-        stop("sql.gz path does not exist!")
+        stop(paste(dataset, "sql.gz path does not exist!"))
     if (w2 != 0)  
         stop("data path does not exist!")
     ##
