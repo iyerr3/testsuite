@@ -497,7 +497,13 @@ km_random_ctas_0_0
 ### Type: 2 ###
 rf_gini_dataset_0_7
 rf_gainratio_dataset_0_7
-rf_infogain_dataset_0_7 
+rf_infogain_dataset_0_7
+elastic_net_output_test_0_21
+elastic_net_output_test_0_22
+linregr_hetero_output_test_0_50
+linregr_hetero_output_test_0_51
+linregr_hetero_output_test_0_52
+linregr_hetero_output_test_0_53
 ### END ###
 
 
