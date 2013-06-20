@@ -1,11 +1,14 @@
 case_kmeans_rewrite_full_pg
 
 case_common
-case_multinomial_logistic_regression_pg_full
+#case_multinomial_logistic_regression_pg_full
 
 case_svm_pgfull
 
 case_naive_bayes_pgbasic
+
+case_plda_feature_pgbasic
+case_plda_corner_negative_pgbasic
 
 case_assoc_rules_ft_pg
 case_linear
@@ -104,16 +107,3 @@ case_uniform_quantile
 case_weibull_cdf
 case_weibull_pdf
 case_weibull_quantile
-
-case_generalcv_linregr
-case_generalcv_logregr
-case_generic_cv_input
-
-# case_ridge_regression
-# case_elastic_null_values
-case_lda_corner
-case_lda_feature_full
-case_lda_perplexity
-
-
-case_summary_full

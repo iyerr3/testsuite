@@ -1,29 +1,16 @@
-case_lda_corner
-case_lda_feature_dev
-case_lda_perplexity
-
-case_summary_dev
-
-case_generalcv_linregr
-case_generalcv_logregr
-case_generic_cv_input
-
-case_logistic_regression
-case_logregr_output
-
-case_linear
-case_linregr_hetero
-case_linregr_grouping
-
 case_kmeans_rewrite_dev_gp
 
 case_common
-case_multinomial_logistic_regression_gp_basic
+#case_multinomial_logistic_regression_gp_basic
 
 case_svm_basic
 
 case_naive_bayes
 
+case_plda_feature
+case_plda_corner_negative
+
+#case_error_new
 case_assoc_rules_basic
 case_rf_small
 case_dt_small
@@ -123,10 +110,6 @@ case_weibull_cdf
 case_weibull_pdf
 case_weibull_quantile
 
-# case_ridge_regression
-# case_elastic_null_values
+case_linear
+case_logistic
 
-case_elastic_net_output
-case_elastic_net_input
-case_elastic_net_input_binomial
-case_elastic_net_output_binomial
