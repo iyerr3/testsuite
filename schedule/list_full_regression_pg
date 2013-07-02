@@ -15,8 +15,8 @@ case_ht_feature
 case_ht_corner
 case_ht_negative
 
-case_linear
-case_logistic_full_pg
+#case_linear
+#case_logistic_full_pg
 case_dt_pgfull
 case_rf_pgfull
 

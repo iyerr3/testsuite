@@ -110,6 +110,6 @@ case_weibull_cdf
 case_weibull_pdf
 case_weibull_quantile
 
-case_linear
-case_logistic
+#case_linear
+#case_logistic
 
